@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" th:href="@{/style/FarmerLogin.css}" />
+    <link rel="stylesheet" th:href="@{/style/navbar.css}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder" style="min-height: 80px">
+      <div id="navbar-container">
+        <!-- Main Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-pry">
+          <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/index}"></a>
+
+            <button
+                    class="navbar-toggler btn btn-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">SEARCH FOR LOANS</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/register}">REGISTER</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                          class="nav-link dropdown-toggle"
+                          href="#"
+                          id="loginDropdown"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                  >
+                    LOGIN
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                    <li>
+                      <a class="dropdown-item" th:href="@{/farmerLogin}"
+                      >FARMER LOGIN</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" th:href="@{/bankLogin}">BANK LOGIN</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" th:href="@{/govtLogin}"
+                      >GOVERNMENT LOGIN</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Secondary Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+              <img
+                      th:src="@{/Images/Logo.png}"
+                      alt="FarmEasy Logo"
+                      width="200"
+                      height="300"
+                      class="d-inline-block align-text-top"
+              />
+              FarmEASY
+            </a>
+
+            <button
+                    class="navbar-toggler btn btn-light"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" th:href="@{/index}">HOME</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/about}">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" th:href="@{/faq}">FAQs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">EMI CALCULATOR</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">CONTACT US</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="login-wrapper">
+        <div class="image-container">
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/004/985/994/small/cartoon-farmer-with-farmland-background-free-vector.jpg" alt="Image 1" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQacA6JUUxV2usrmwgYzH7ImicJxwjxj1ARz1ehTdS--8qvJN-3rsFIFZ4Fdw8FO2nKoaw&usqp=CAU" alt="Image 2" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAdMvxWajwWT8zJPN3kI72otpBvxZiceOSYhcLqwm0afCvdMzP4SRJLQwkDC_3KQz0svI&usqp=CAU" alt="Image 3" />
+        </div>
+
+
+      </div>
+      <div class="login-content">
+        <div class="login-container">
+
+          <form class="mt-3 form" id="login-form" th:action="@{/do_login}" action="#" method="post">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email ID</label>
+              <input type="email" class="form-control" id="email" name="username" required />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Your Password</label>
+              <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="password"
+                      required
+              />
+            </div>
+            <div class="mb-3 captcha-box">
+              <input
+                      type="text"
+                      class="form-control"
+                      id="captcha"
+                      placeholder="Enter above captcha"
+                      required
+              />
+              <button type="button" class="btn btn-secondary">Refresh</button>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn-primary px-4">Login</button>
+            </div>
+          </form>
+          <div class="text-center mt-3">
+            <a href="#" class="text-primary">Forgot Password?</a> |
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container">
+      <footer class="footer">
+        <p>&copy; 2025 Your Website | All Rights Reserved</p>
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--<script>
+      $(document).ready(function () {
+        $("#navbar-placeholder").load("navbar.html");
+        $("#footer-container").load("footer.html");
+      });
+    </script>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

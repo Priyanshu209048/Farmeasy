@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FarmEasy - Apply for Loan</title>
+
+    <!-- Bootstrap 4.5 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-pzjw8f+ua7Kw1TIq0HfY7dXYB23Y6eYJTxl1hW8elVqDRjbz5x8l7jyZ5F3FiS4f"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap CSS
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    /> -->
+
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha384-hv8kH2VVVNATQD3UqqFvDmYD77lO9b/SVf0bUIwYmZ5R1SSZIkHf/jT84sJTZd+V"
+      crossorigin="anonymous"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/farmer/style/style.css}" />
+
+    <!-- Google Translate -->
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+
+    <main>
+      <div id="page3">
+        <video autoplay loop muted src="../../static/farmer/videos/video1_1.mp4"></video>
+        <nav id="menu">
+          <h4>Menu</h4>
+          <ul>
+            <li><a th:href="@{/user/home}">&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a th:href="@{/user/schemes}">NGOs & Government Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/user/soilQuality}">Crop Rotation&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/user/calender}">Crop Tracking System</a></li>
+            <li><a th:href="@{/user/loan}" class="active">Apply for Loan</a></li>
+          </ul>
+        </nav>
+
+        <section id="loan-form-section">
+          <h2>Apply for a Loan</h2>
+          <form class="loan-form-page" action="/submit-loan" method="POST" id="loanForm">
+            <div>
+              <label for="name">Full Name:</label><br />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div>
+              <label for="email">Email Address:</label><br />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+            <div>
+              <label for="phone">Phone Number:</label><br />
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div>
+              <label for="amount">Loan Amount:</label><br />
+              <input
+                type="number"
+                id="amount"
+                name="amount"
+                placeholder="Enter desired loan amount"
+                required
+              />
+            </div>
+            <div>
+              <label for="purpose">Purpose of Loan:</label><br />
+              <textarea
+                id="purpose"
+                name="purpose"
+                rows="4"
+                placeholder="Explain the purpose of the loan"
+                required
+              ></textarea>
+            </div>
+            <div>
+              <label for="income">Monthly Income:</label><br />
+              <input
+                type="number"
+                id="income"
+                name="income"
+                placeholder="Enter your monthly income"
+                required
+              />
+            </div>
+            <div>
+              <label for="documents">Upload Supporting Documents:</label><br />
+              <input
+                type="file"
+                id="documents"
+                name="documents"
+                accept=".pdf,.jpg,.png"
+                required
+              />
+            </div>
+            <div>
+              <button type="submit">Submit Application</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 FarmEasy. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

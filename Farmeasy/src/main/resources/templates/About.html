@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About FarmEasy</title>
+  <link rel="stylesheet" th:href="@{/about.css}" />
+  <!-- Bootstrap 5 CSS -->
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+</head>
+<body>
+<!-- Navbar Placeholder -->
+<div id="navbar-placeholder"></div>
+
+<main class="container-fluid mt-5">
+  <section class="about-section text-center">
+    <!-- Centered Title and Subtitle -->
+    <h2 class="about-title">About FarmEasy</h2>
+    <p class="about-subtitle">
+      Revolutionizing Agricultural Loans for Farmers
+    </p>
+
+    <div class="row align-items-center">
+      <!-- Left Section (Text) -->
+      <div class="col-md-6 about-text-container text-start">
+        <p>
+          <strong>FarmEasy</strong> is a pioneering digital platform
+          designed to streamline the loan application process for farmers.
+          Recognizing the challenges faced by the agricultural community in
+          securing financial support, FarmEasy provides a
+          <strong>simple, transparent, and efficient</strong>
+          way for farmers to access loans tailored to their needs.
+        </p>
+        <ul class="about-list">
+          <li>
+            <strong>✅ Explore Loan Options</strong> – View various
+            agricultural loan schemes.
+          </li>
+          <li>
+            <strong>✅ Apply Online</strong> – Submit loan applications
+            digitally.
+          </li>
+          <li>
+            <strong>✅ Track Loan Status</strong> – Monitor progress in
+            real-time.
+          </li>
+          <li>
+            <strong>✅ Access Anytime, Anywhere</strong> – 24/7
+            availability.
+          </li>
+        </ul>
+        <p>
+          By bridging the gap between farmers and financial institutions,
+          <strong>FarmEasy empowers the farming community</strong>, helping
+          them secure necessary funding to invest in modern equipment,
+          quality seeds, fertilizers, and sustainable farming practices.
+        </p>
+        <p class="text-start">
+          <strong>🌱 Empowering Farmers, Growing Futures! 🚜</strong>
+        </p>
+      </div>
+
+      <!-- Right Section (Images) -->
+      <div class="col-md-6 d-flex justify-content-end">
+        <div class="image-container">
+          <img
+                  src="https://static.vecteezy.com/system/resources/thumbnails/004/985/994/small/cartoon-farmer-with-farmland-background-free-vector.jpg"
+                  alt="Image 1"
+          />
+          <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQacA6JUUxV2usrmwgYzH7ImicJxwjxj1ARz1ehTdS--8qvJN-3rsFIFZ4Fdw8FO2nKoaw&usqp=CAU"
+                  alt="Image 2"
+          />
+          <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAdMvxWajwWT8zJPN3kI72otpBvxZiceOSYhcLqwm0afCvdMzP4SRJLQwkDC_3KQz0svI&usqp=CAU"
+                  alt="Image 3"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<div id="footer-container"></div>
+
+<!-- jQuery for Loading Navbar/Footer -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#navbar-placeholder").load("navbar.html");
+    $("#footer-container").load("footer.html");
+  });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

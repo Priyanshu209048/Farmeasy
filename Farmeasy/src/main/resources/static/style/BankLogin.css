@@ -1,0 +1,98 @@
+/* General Styles */
+html,
+body {
+  background-color: #f8f9fa;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content container */
+.container {
+  flex-grow: 1; /* Pushes footer to bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image container */
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px; /* Space below the image */
+}
+
+/* Single Image Styling */
+.image-container img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Login Wrapper */
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 20px;
+}
+
+/* Login Content */
+.login-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Login Box */
+.login-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: #04884c;
+  color: white;
+  border: 2px solid white;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px 20px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #007a45;
+  border-color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Footer at Bottom */
+.footer {
+  height: 60px;
+  background: #1e5631;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto; /* Pushes footer to bottom */
+}

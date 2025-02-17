@@ -1,0 +1,190 @@
+/* Background */
+body {
+  background: linear-gradient(to right, #2a8358, #4ab677);
+  height: 100vh; /* Full height */
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* Prevent scrollbar */
+  margin: 0;
+  padding: 0;
+}
+
+/* Full height for equal columns, leaving space for footer */
+.full-height {
+  height: 85vh; /* Reduced height to leave space for footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Container */
+.container {
+  height: 85vh; /* Keep same height as full-height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Left Side - Login Form */
+.login-container {
+  width: 80%; /* Take up half the screen */
+  max-width: none;
+  height: 75vh; /* Reduce height slightly to fit in space */
+  padding: 40px;
+  background: rgb(79, 163, 113);
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgb(249, 248, 248);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Right Side - Image */
+.image-container {
+  width: 50%; /* Take up half the screen */
+  height: 75vh; /* Match form height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 100%; /* Increase width */
+  height: 100%; /* Cover full height */
+  object-fit: cover; /* Ensure it fills the space */
+  border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+  height: 15vh; /* Space for footer */
+  background: #1e5631;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button Styling */
+.btn-pry {
+  background-color: #1e5631;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #12765c;
+  transform: scale(1.05);
+}
+
+/* Captcha Styling */
+.captcha-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-container,
+  .image-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .image-container {
+    display: none; /* Hide image on smaller screens */
+  }
+
+  .footer {
+    height: 10vh;
+  }
+}
+
+.image-container img {
+  width: 100%; /* Increase width */
+  height: 100%; /* Cover the full height */
+  object-fit: cover; /* Ensure it fills the space */
+  border-radius: 10px;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: #04884c; /* Darker green for better contrast */
+  color: white;
+  border: 2px solid white; /* Add white border for visibility */
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px 20px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #007a45; /* Lighter green on hover */
+  border-color: #ffffff; /* Keep white border */
+  transform: scale(1.05);
+}
+
+/* Captcha Styling */
+.captcha-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer {
+  height: 15vh;
+  background: #1e5631;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative; /* Change from absolute if not working */
+}
+.text-center a {
+  color: white; /* Make it white */
+  text-decoration: none; /* Optional: Remove underline */
+}
+
+.text-center a:hover {
+  text-decoration: underline; /* Show underline on hover */
+}
+#login-title {
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-container,
+  .image-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .image-container {
+    display: none; /* Hide image on smaller screens */
+  }
+}

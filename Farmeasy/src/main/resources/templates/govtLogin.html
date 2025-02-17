@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Government Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/style/govtLogin.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Load jQuery First -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="container">
+      <div class="row full-height">
+        <!-- Left Side - Login Form -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <div class="login-container">
+            <h2 class="text-center" id="login-title">Login</h2>
+            <form
+              id="loginForm"
+              method="post"
+              onsubmit="return validate();"
+              autocomplete="off"
+            >
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  required
+                  autocomplete="current-password"
+                />
+              </div>
+
+              <!-- Captcha -->
+              <div class="mb-3">
+                <img
+                  id="img_Captcha"
+                  src="captcha.jpg"
+                  width="170"
+                  height="60"
+                />
+                <button
+                  type="button"
+                  class="btn btn-sm btn-secondary"
+                  onclick="refreshCaptcha()"
+                >
+                  Refresh
+                </button>
+              </div>
+              <div class="mb-3">
+                <input
+                  name="j_captcha_response"
+                  type="text"
+                  id="j_captcha_response"
+                  class="form-control"
+                  maxlength="5"
+                  placeholder="Enter above captcha"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-primary w-100">Login</button>
+              <p class="text-center mt-3">
+                <a href="forgotPass">Forgot password?</a>
+              </p>
+
+              <input type="hidden" name="_csrf" value="your_csrf_token_here" />
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Side - Image -->
+        <div class="col-md-6 d-none d-md-block image-container">
+          <img
+            src="https://burst.shopifycdn.com/photos/macbook-air-on-desk.jpg?width=1000&format=pjpg&exif=0&iptc=0"
+            alt="Login Illustration"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script>
+      $(document).ready(function () {
+        $("#navbar-placeholder").load("navbar.html");
+        $("#footer-container").load("footer.html");
+      });
+
+      function refreshCaptcha() {
+        document.getElementById("img_Captcha").src =
+          "captcha.jpg?" + Math.random();
+      }
+
+      function validate() {
+        var uID = document.getElementById("username").value;
+        var pwd = document.getElementById("password").value;
+
+        if (uID.trim() === "" || pwd.trim() === "") {
+          alert("Username and Password cannot be empty");
+          return false;
+        }
+        return true;
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

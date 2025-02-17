@@ -1,0 +1,132 @@
+/* ========================= */
+/* General Navbar Styles */
+/* ========================= */
+.navbar {
+  background-color: olivedrab !important;
+}
+
+/* ========================= */
+/* Primary Navbar (Dark) */
+/* ========================= */
+.navbar-dark.bg-pry {
+  background-color: #1b7639 !important;
+  padding-left: 20px; /* Shift navbar slightly left */
+}
+
+/* Primary Navbar Links */
+.navbar-dark .navbar-nav {
+  margin-right: 75px; /* Additional left shift for alignment */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white !important;
+  font-size: 1.1rem; /* Increased text size */
+  font-weight: 600;
+  padding: 10px 15px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #ffdd57 !important;
+}
+
+/* ========================= */
+/* Secondary Navbar (Light) */
+/* ========================= */
+.navbar-light.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* Secondary Navbar Layout */
+.navbar-light .container-fluid {
+  display: flex;
+  justify-content: space-between; /* Evenly spread navbar items */
+  align-items: center; /* Vertically center items */
+}
+
+/* Secondary Navbar Links */
+.navbar-light .navbar-nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-evenly; /* Evenly distribute items */
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #333 !important;
+  font-size: 1.5rem; /* Increased text size */
+  font-weight: 600;
+  padding: 10px 15px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #0e532b !important;
+}
+
+/* ========================= */
+/* Navbar Brand & Logo */
+/* ========================= */
+.navbar-brand {
+  display: flex;
+  align-items: center; /* Center logo and text */
+  font-weight: bold;
+  font-size: 1.8rem; /* Increased size */
+  color: #1b7639 !important; /* Match primary navbar */
+}
+
+.navbar-brand img {
+  width: 50px; /* Increased size for better visibility */
+  height: auto;
+  margin-right: 10px;
+}
+
+/* ========================= */
+/* Dropdown Styling */
+/* ========================= */
+.navbar-nav .dropdown-menu {
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-nav .dropdown-item {
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem; /* Slightly increased for readability */
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #f4f4f4;
+}
+
+/* ========================= */
+/* Navbar Toggle Button */
+/* ========================= */
+.navbar-toggler {
+  border: none;
+  background-color: white !important;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ========================= */
+/* Responsive Navbar Styles */
+/* ========================= */
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-collapse {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .navbar-dark .navbar-nav .nav-link,
+  .navbar-light .navbar-nav .nav-link {
+    font-size: 1rem; /* Slightly smaller for mobile readability */
+    padding: 8px 12px;
+  }
+}

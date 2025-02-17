@@ -1,0 +1,112 @@
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the main content area flexible */
+.main-content {
+  flex: 1;
+}
+
+/* Footer */
+.footer {
+  height: 60px;
+  background: #1e5631;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+  position: relative;
+}
+
+/* FAQ Section */
+.faq-section {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* FAQ Title */
+.faq-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* FAQ Subtitle */
+.faq-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Accordion Styling */
+.accordion {
+  border: none;
+}
+
+.accordion-item {
+  border: none;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Accordion Button */
+.accordion-button {
+  background-color: #1e5631;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.accordion-button:hover {
+  background-color: #164626;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* Collapse Content */
+.accordion-body {
+  background: #fff;
+  padding: 20px;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 40px 15px;
+  }
+
+  .faq-title {
+    font-size: 2rem;
+  }
+
+  .faq-subtitle {
+    font-size: 1rem;
+  }
+
+  .accordion-button {
+    font-size: 1rem;
+  }
+}

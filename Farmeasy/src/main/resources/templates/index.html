@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <title>FarmEasy - Agricultural Loan Portal</title> -->
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" th:href="@{/style/style.css}" />
+  <link rel="stylesheet" th:href="@{/style/navbar.css}" />
+
+  <!-- FontAwesome -->
+  <script
+          src="https://kit.fontawesome.com/a076d05399.js"
+          crossorigin="anonymous"
+  ></script>
+</head>
+
+<body>
+<!-- Navbar will be dynamically loaded here -->
+<!-- Navbar Placeholder -->
+<div id="navbar-placeholder" style="min-height: 80px">
+  <div id="navbar-container">
+    <!-- Main Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-pry">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/index}"></a>
+
+        <button
+                class="navbar-toggler btn btn-light"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">SEARCH FOR LOANS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/register}">REGISTER</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="loginDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+              >
+                LOGIN
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                <li>
+                  <a class="dropdown-item" th:href="@{/farmerLogin}"
+                  >FARMER LOGIN</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" th:href="@{/bankLogin}">BANK LOGIN</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" th:href="@{/govtLogin}"
+                  >GOVERNMENT LOGIN</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Secondary Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img
+                  th:src="@{/Images/Logo.png}"
+                  alt="FarmEasy Logo"
+                  width="200"
+                  height="300"
+                  class="d-inline-block align-text-top"
+          />
+          FarmEASY
+        </a>
+
+        <button
+                class="navbar-toggler btn btn-light"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/index}">HOME</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/about}">ABOUT US</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/faq}">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">EMI CALCULATOR</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">CONTACT US</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <header>
+    <div class="container-fluid banner_main">
+      <div class="row">
+        <div class="container-slider">
+          <div
+                  id="carousel-example-generic"
+                  class="carousel slide carousel-fade"
+                  data-bs-ride="carousel"
+          >
+            <div
+                    class="carousel-inner main-carousel"
+                    style="overflow: hidden"
+            >
+              <div
+                      class="carousel-item active"
+                      style="
+                      background: url('/Images/loan.jpg') no-repeat center
+                        center/cover;
+                      height: 800px;
+                    "
+              >
+                <div class="background-img">
+                  <div class="slider-content">
+                    <h4>Helping Farmers dream bigger</h4>
+                    <div class="banner-text">
+                      <p class="steps-content">
+                        BY MAKING LOANS MORE ACCESSIBLE FOR FARMERS
+                      </p>
+                      <p class="apply-btn">
+                        <a
+                                href="loginPage.html"
+                                class="btn btn-success btn-lg"
+                        >APPLY NOW</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                      class="carousel-item"
+                      style="
+                      background: url('https://media.istockphoto.com/id/1221679843/photo/money-is-born-soil-in-the-bottom-of-the-plantations-agribusiness-profit-land-value.jpg?s=612x612&w=0&k=20&c=WV3LiD_10a5HS-NgKKfMtrDm42GbJ14BwBTkyqwlK_Q=')
+                        no-repeat center center/cover;
+                      height: 800px;
+                    "
+              >
+                <div class="background-img">
+                  <div class="slider-content">
+                    <h4>The Simplest Way to</h4>
+                    <div class="banner-text">
+                      <p class="steps-content">Apply For Loan</p>
+                      <p class="apply-btn">
+                        <a
+                                href="loginPage.html"
+                                class="btn btn-success btn-lg"
+                        >APPLY NOW</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                      class="carousel-item"
+                      style="
+                      background: url('https://media.gettyimages.com/id/1290970531/photo/coins-in-farmers-hand-background-of-agricultural-farm.jpg?s=612x612&w=0&k=20&c=RTquCw054e4COxrFmJ0f-jhWBoRyR5j8-oS0rAU1eQ0=')
+                        no-repeat center center/cover;
+                      height: 800px;
+                    "
+              >
+                <div class="background-img">
+                  <div class="slider-content">
+                    <h4>View, apply and track</h4>
+                    <div class="banner-text">
+                      <p class="steps-content">YOUR LOAN IN EASY STEPS</p>
+                      <p class="apply-btn">
+                        <a
+                                href="loginPage.html"
+                                class="btn btn-success btn-lg"
+                        >APPLY NOW</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carousel-example-generic"
+                    data-bs-slide="prev"
+            >
+                  <span
+                          class="carousel-control-prev-icon"
+                          aria-hidden="true"
+                  ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carousel-example-generic"
+                    data-bs-slide="next"
+            >
+                  <span
+                          class="carousel-control-next-icon"
+                          aria-hidden="true"
+                  ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section style="padding: 40px 0px" class="custom-padding">
+    <div class="container-fluid no-padding">
+      <div class="row">
+        <div
+                class="about aos-init aos-animate"
+                data-aos="zoom-in"
+                data-aos-duration="1000"
+                data-aos-easing="ease-in-sine"
+        >
+          <h3>ABOUT FarmEASY</h3>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="story">
+          <h2 class="text-head aos-init aos-animate" data-aos="fade-up">
+            OUR STORY
+          </h2>
+          <p data-aos="fade-up" class="aos-init aos-animate">
+            FarmEasy is a digital platform that simplifies the loan
+            application process for farmers, providing a seamless,
+            transparent, and efficient way to access financial support. It
+            allows farmers to explore various loan options from multiple
+            banks, apply online without paperwork, track their loan status
+            in real-time, and manage finances anytime, anywhere. By bridging
+            the gap between farmers and financial institutions, FarmEasy
+            empowers the agricultural community with the resources needed to
+            invest in modern equipment, quality seeds, fertilizers, and
+            sustainable farming practices—helping them grow their future
+            with confidence.
+          </p>
+          <div class="story-link aos-init" data-aos="fade-up">
+            <a th:href="@{/about}" class="btn btn-primary">Read More</a>
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Load Navbar dynamically -->
+<!--<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("navbar.html")
+            .then((response) => response.text())
+            .then((data) => {
+              document.getElementById("navbar-placeholder").innerHTML = data;
+            })
+            .catch((error) => console.error("Error loading navbar:", error));
+  });
+</script>-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(
+            ".about, .text-head, .story p, .story-link"
+    );
+
+    const observer = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("animated");
+                  observer.unobserve(entry.target); // Stop observing after animation triggers once
+                }
+              });
+            },
+            { threshold: 0.2 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+  });
+</script>
+</body>
+</html>

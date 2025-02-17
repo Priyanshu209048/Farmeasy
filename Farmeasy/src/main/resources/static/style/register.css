@@ -1,0 +1,106 @@
+/* Apply spacing around elements */
+body {
+  background-color: #f8f9fa;
+}
+
+/* Add spacing below navbar */
+.alert {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Blinking animation for alert */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.blink-text {
+  animation: blink 1s infinite;
+}
+
+/* Row Styling to Make Cards Equal */
+.row {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Card Styling */
+.card {
+  border-radius: 12px;
+  border: 2px solid #0a6c45;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Ensure both cards match the tallest one */
+.col-md-6,
+.col-md-5 {
+  display: flex;
+  flex-direction: column;
+}
+
+.card.shadow-lg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex-grow: 1; /* Ensures both cards grow equally */
+  margin-bottom: 20px;
+}
+
+/* Increase form readability */
+.form-control {
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Add margin between form fields */
+.mb-3 {
+  margin-bottom: 15px !important;
+}
+
+/* Ensure sections have some space between them */
+.col-md-5 {
+  margin-bottom: 20px;
+}
+
+/* Footer Styling */
+.footer {
+  height: 60px;
+  background: #1e5631;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Green Register Button */
+.btn-primary {
+  background-color: #04884c !important;
+  color: white !important;
+  border: 2px solid white;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px 20px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #007a45 !important;
+  border-color: #ffffff;
+  transform: scale(1.05);
+}
