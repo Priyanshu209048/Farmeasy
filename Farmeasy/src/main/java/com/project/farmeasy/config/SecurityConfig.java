@@ -48,7 +48,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(request -> {
                     request.requestMatchers("/gov/**").hasRole("GOV");
                     request.requestMatchers("/bank/**").hasRole("BANK");
-                    request.requestMatchers("/user/**").permitAll();
+                    request.requestMatchers("/user/**").hasRole("FARMER");
                     request.requestMatchers("/**").permitAll();
                 })
                 .formLogin(form -> form.loginPage("/farmerLogin")

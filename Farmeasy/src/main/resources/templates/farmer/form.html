@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <link rel="stylesheet" th:href="@{/farmer/style/styles1.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <section>
+            <h1 class="header">Welcome 👋</h1>
+            <p class="text-dark-700">Let us know more about yourself.</p>
+        </section>
+
+        <form action="" th:action="@{/user/form}" method="post" th:object="${loanForm}" enctype="multipart/form-data">
+            <h2 class="sub-header">Personal Information</h2>
+            <input type="hidden" name="id" th:field="*{id}">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" placeholder="Arav Kumar" required>
+            
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" th:field="*{email}" placeholder="your-email@gmail.com" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="contact" th:field="*{contact}" placeholder="(+91) 123-4567" required>
+            
+            <label>Gender</label>
+            <div class="radio-group">
+                <input type="radio" id="male" name="gender" th:field="*{gender}" value="Male"><label for="male">Male</label>
+                <input type="radio" id="female" name="gender" th:field="*{gender}" value="Female"><label for="female">Female</label>
+            </div>
+            
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" th:field="*{address}" placeholder="14 street, New York, NY - 5101">
+
+            <label for="address">District</label>
+            <input type="text" id="district" name=:district th:field="*{district}" placeholder="Mohali">
+
+            <label for="address">State</label>
+            <input type="text" id="state" name="state"th:field="*{state}" placeholder="Punjab">
+
+            <label for="address">Pin-code</label>
+            <input type="text" id="pinCode" name="pinCode" th:field="*{pinCode}" placeholder="110001">
+            
+            <label for="idType">Identification Type</label>
+            <select id="idType" name="idType" th:field="*{idType}">
+                <option value="aadhaar">Aadhaar Number</option>
+                <option value="pan">Pan Card</option>
+                <option value="voter">Voter Card</option>
+                <option value="ration">Ration Card</option>
+                <option value="driving">Driving Licence</option>
+            </select>
+
+            <label for="idNumber">Identification Number</label>
+            <input type="text" id="idNumber" name="idNumber" th:field="*{idNumber}" placeholder="Enter Identification Number" required>
+            
+            <h2 class="sub-header">Collateral Details</h2>
+            <label for="collateralType">Collateral Type</label>
+            <select id="collateralType" name="collateralType" th:field="*{collateralType}">
+                <option value="land">Land</option>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+            </select>
+            
+            <label for="guarantorName">Guarantor's Name and Contact Details</label>
+            <input type="text" id="guarantorName" name="guarantorName" th:field="*{guarantorName}" placeholder="Enter Guarantor's Name">
+            <input type="tel" id="guarantorContact" name="guarantorContact" th:field="*{guarantorContact}" placeholder="Enter Contact Number">
+            
+            <label for="guarantorRelation">Guarantor's Relationship with Loan Applicant</label>
+            <input type="text" id="guarantorRelation" name="guarantorRelation" th:field="*{guarantorRelation}" placeholder="Enter Relationship">
+            
+            <h2 class="sub-header">Land Details</h2>
+            <label for="landAmount">Total Amount of Land (in acres)</label>
+            <input type="number" id="landAmount" name="landAmount" th:field="*{landAmount}" placeholder="Enter Land Area">
+
+            <label for="khsraNumber">Khsra Number</label>
+            <input type="number" id="khsraNumber" name="khsraNumber" th:field="*{khsraNumber}" placeholder="Enter Khsra Number">
+            
+            <label for="landOwnership">Ownership Type</label>
+            <select id="landOwnership" name="landOwnership" th:field="*{landOwnership}">
+                <option value="owned">Owned</option>
+                <option value="leased">Leased</option>
+            </select>
+            
+            <label for="soilType">Soil Type</label>
+            <input type="text" id="soilType" name="soilType" th:field="*{soilType}" placeholder="Enter Soil Type">
+            
+            <label for="cropType">Type of Crop Grown</label>
+            <input type="text" id="cropType" name="cropType" th:field="*{cropType}" placeholder="Enter Crop Type">
+
+            <label for="documents">Upload Documents (Land Paper, PAN card, Photo)</label>
+            <input type="file" id="documents" name="documents" accept=".pdf,.jpg,.png">
+            <p id="propertyDocumentsName"></p>
+
+            <input type="hidden" name="pdfName" th:value="${loanForm.pdfName}">
+            
+            <label for="privacyConsent">
+                <input type="checkbox" id="privacyConsent"> I acknowledge that I have reviewed and agree to the privacy policy.
+            </label>
+
+            <button type="submit" class="submit-btn">Submit and Continue</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form Submitted Successfully!');
+            window.scrollTo(0, 0);
+            location.reload();
+        });
+
+        document.getElementById('supportingDocuments').addEventListener('change', function(event) {
+            const fileNameDisplay = document.getElementById('fileName');
+            if (event.target.files.length > 0) {
+                fileNameDisplay.textContent = 'Selected file: ' + event.target.files[0].name;
+            } else {
+                fileNameDisplay.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>
