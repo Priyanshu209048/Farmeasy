@@ -1,7 +1,7 @@
 package com.project.farmeasy.controllers;
 
-import com.project.farmeasy.entities.User;
-import com.project.farmeasy.services.UserService;
+import com.project.farmeasy.entities.Farmer;
+import com.project.farmeasy.services.FarmerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserService userService;
+    private final FarmerService farmerService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
 
@@ -44,12 +44,12 @@ public class HomeController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("farmer", new Farmer());
         return "register";
     }
 
     @PostMapping("/do_register")
-    public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,
+    public String registerUser(@Valid @ModelAttribute("farmer") Farmer farmer, BindingResult bindingResult,
                                @RequestParam(value = "agreement", defaultValue = "false") boolean agreement, Model model) {
         try {
 
@@ -58,22 +58,22 @@ public class HomeController {
                 throw new Exception("Please select the terms and conditions");
             }*/
 
-            System.out.println(user.getPassword());
+            System.out.println(farmer.getPassword());
 
             if (bindingResult.hasErrors()) {
                 System.out.println("ERROR " + bindingResult.toString());
-                model.addAttribute("user", user);
+                model.addAttribute("user", farmer);
                 return "register";
             }
 
-            User saved = userService.saveUser(user);
-            model.addAttribute("user", new User());
+            Farmer saved = farmerService.saveUser(farmer);
+            model.addAttribute("user", new Farmer());
 
             return "FarmerLogin";
 
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("user", user);
+            model.addAttribute("user", farmer);
             return "register";
         }
     }
@@ -96,9 +96,9 @@ public class HomeController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            User user = (User) userDetails;
+            Farmer farmer = (Farmer) userDetails;
 
-            model.addAttribute("user", user);
+            model.addAttribute("user", farmer);
 
             System.out.println("Hello");
             return "redirect:/user/home";

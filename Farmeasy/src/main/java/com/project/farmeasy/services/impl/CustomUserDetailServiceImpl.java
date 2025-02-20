@@ -1,7 +1,9 @@
 package com.project.farmeasy.services.impl;
 
-import com.project.farmeasy.dao.UserDao;
+import com.project.farmeasy.dao.FarmerDao;
 import com.project.farmeasy.config.CustomUserDetails;
+import com.project.farmeasy.dao.UserDao;
+import com.project.farmeasy.entities.Farmer;
 import com.project.farmeasy.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,9 +19,9 @@ public class CustomUserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = this.userDao.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        User user = this.userDao.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Farmer not found with username: " + username));
         if (user == null)
-            throw new UsernameNotFoundException("User not found with username: " + username);
+            throw new UsernameNotFoundException("Farmer not found with username: " + username);
         return new CustomUserDetails(user);
     }
 }

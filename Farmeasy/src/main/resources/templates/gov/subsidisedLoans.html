@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subsidised Loans</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" th:href="@{/government/style/navbar.css}" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-gray-100 flex-col min-h-screen">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-600">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">FarmEASY</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/}">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/overview}">Overview</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/grievances}">Grievances</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/gov/subsidisedLoans}"
+                >Subsidised Loans</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/analytics}">Analytics</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/policyNotification}"
+                >Policy & Notifications</a
+              >
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-danger logout" onclick="logout()">
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto p-6 w-full">
+      <!-- Loan Statistics Summary Table -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-xl font-bold mb-4">Loan Statistics</h2>
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="border p-2">Total Loans</th>
+              <th class="border p-2">Approved Loans</th>
+              <th class="border p-2">Rejected Loans</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr>
+              <td class="border p-2" id="total-loans">0</td>
+              <td class="border p-2" id="approved-loans">0</td>
+              <td class="border p-2" id="rejected-loans">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Subsidised Loan List Table -->
+      <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+        <h2 class="text-xl font-bold mb-4">Subsidised Loan Applications</h2>
+
+        <!-- Filter Dropdown -->
+        <div class="mb-4">
+          <label for="loanFilter" class="mr-2">Filter by Status:</label>
+          <select id="loanFilter" class="p-2 border rounded">
+            <option value="All">All</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+
+        <table class="w-full border-collapse border border-gray-300">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="border p-2">Farmer Name</th>
+              <th class="border p-2">Bank Name</th>
+              <th class="border p-2">Status</th>
+              <th class="border p-2">Details</th>
+              <th class="border p-2">Action</th>
+            </tr>
+          </thead>
+          <tbody id="loan-table" class="text-center">
+            <!-- Data will be inserted here dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pie Chart Section -->
+      <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-bold mb-4">Loan Status Distribution</h2>
+        <canvas id="loanChart"></canvas>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("loanFilter")
+        .addEventListener("change", function () {
+          fetchLoans();
+        });
+
+      function fetchLoans() {
+        fetch("your-backend-api-endpoint") // Replace with actual API endpoint
+          .then((response) => response.json())
+          .then((data) => {
+            updateLoanTable(data.loans);
+            updateStatistics(data.loans);
+            updateChart(data.loans);
+          })
+          .catch((error) => console.error("Error fetching loan data:", error));
+      }
+
+      function updateLoanTable(loans) {
+        let selectedStatus = document.getElementById("loanFilter").value;
+        let tableBody = document.getElementById("loan-table");
+        tableBody.innerHTML = "";
+
+        let filteredLoans = loans.filter(
+          (loan) => selectedStatus === "All" || loan.status === selectedStatus
+        );
+
+        filteredLoans.forEach((loan) => {
+          let row = document.createElement("tr");
+          row.innerHTML = `
+              <td class="border p-2">${loan.farmerName}</td>
+              <td class="border p-2">${loan.bankName}</td>
+              <td class="border p-2">${loan.status}</td>
+              <td class="border p-2">${loan.details}</td>
+              <td class="border p-2">${
+                loan.status === "Approved" ? "Approve" : "Reject"
+              }
+            </td>
+`;
+          tableBody.appendChild(row);
+        });
+      }
+
+      function updateStatistics(loans) {
+        document.getElementById("total-loans").innerText = loans.length;
+        document.getElementById("approved-loans").innerText = loans.filter(
+          (loan) => loan.status === "Approved"
+        ).length;
+        document.getElementById("rejected-loans").innerText = loans.filter(
+          (loan) => loan.status === "Rejected"
+        ).length;
+      }
+
+      function updateChart(loans) {
+        let ctx = document.getElementById("loanChart").getContext("2d");
+        let loanData = {
+          labels: ["Approved", "Rejected"],
+          datasets: [
+            {
+              data: [
+                loans.filter((loan) => loan.status === "Approved").length,
+                loans.filter((loan) => loan.status === "Rejected").length,
+              ],
+              backgroundColor: ["#28a745", "#dc3545"],
+            },
+          ],
+        };
+
+        new Chart(ctx, { type: "pie", data: loanData });
+      }
+
+      fetchLoans();
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white text-center p-4 mt-6">
+      <p>© 2025 Loan & Grievance Portal. All rights reserved.</p>
+      <p>Developed by FarmEasy</p>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

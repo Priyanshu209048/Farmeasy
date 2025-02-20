@@ -8,7 +8,7 @@
     <title> Soil Quality | FARMEASY🌿</title>
     <!--<img src="/images/icon.png" alt="icon"/>-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
-    <link rel="stylesheet" th:href="@{/farmer/style/style.css}">
+    <link rel="stylesheet" th:href="@{/farmers/style/style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
     
     <style>
         body {
-            background-image: url(/farmer/images/img2.jpg);
+            background-image: url(/farmers/images/img2.jpg);
             background-repeat: no-repeat;
             background-size: cover; /* Adjust as needed */
             background-position: center; /* Adjust as needed */
@@ -99,12 +99,13 @@
         <nav id="menu">
             <h4>Menu</h4>
             <ul>
-                <li><a th:href="@{/user/home}">Home</a></li>
+                <li><a th:href="@{/farmer/home}">Home</a></li>
                 <li><a href="#">Our Services</a></li>
-                <li><a th:href="@{/user/schemes}">NGOs & Government Schemes</a></li>
-                <li><a th:href="@{/user/soilQuality}">Crop Rotation</a></li>
-                <li><a th:href="@{/user/calender}">Crop Tracking System</a></li>
-                <li><a th:href="@{/user/loan}">Apply for Loan</a></li>
+                <li><a th:href="@{/farmer/schemes}">NGOs & Government Schemes</a></li>
+                <li><a th:href="@{/farmer/soilQuality}">Crop Rotation</a></li>
+                <li><a th:href="@{/farmer/calender}">Crop Tracking System</a></li>
+                <li><a th:href="@{/farmer/loan}">Apply for Loan</a></li>
+                <li><a th:href="@{/farmer/status}">Application Status</a></li>
             </ul>
         </nav>
        
@@ -120,51 +121,51 @@
                     <div class="row">
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#blackCottonModal">
-                                <img th:src="@{/farmer/images/img9.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img9.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Black Cotton Soil (Regur Soil)</div>
                         </div>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#RYModal">
-                                <img th:src="@{/farmer/images/img10.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img10.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Red & Yellow Soil</div>
                         </div>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#AlluvialModal">
-                                <img th:src="@{/farmer/images/img11.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img11.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Alluvial Soil</div>
                         </div>
                         <br>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#MFModal">
-                                <img th:src="@{/farmer/images/img12.avif}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img12.avif}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Mountainous or Forest Soil</div>
                         </div>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#ADModal">
-                                <img th:src="@{/farmer/images/img13.jpeg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img13.jpeg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Arid or Desert Soil</div>
                         </div>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#PMModal">
-                                <img th:src="@{/farmer/images/img14.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img14.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Peaty and Marshy Soil</div>
                         </div>
                         <br>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#SAModal">
-                                <img th:src="@{/farmer/images/img17.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img17.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Saline and Alkaline Soil</div>
                         </div>
                         <div class="col-md-3">
                             <a href="#" data-toggle="modal" data-target="#LModal">
-                                <img th:src="@{/farmer/images/img16.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
+                                <img th:src="@{/farmers/images/img16.jpg}" style="border-radius: 100%; width: 250px; height: 350px;" alt="">
                             </a>
                             <div class="centered">Laterite Soil</div>
                         </div>
@@ -367,7 +368,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
         integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script th:src="@{/farmer/js/script.js}"></script>
+    <script th:src="@{/farmers/js/script.js}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

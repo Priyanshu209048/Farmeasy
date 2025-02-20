@@ -1,0 +1,75 @@
+.navbar {
+  background-color: #003366; /* Dark blue background */
+  padding: 1rem 2rem;
+}
+
+/* Flexbox for navbar items */
+.navbar-nav {
+  display: flex;
+  justify-content: space-evenly; /* Evenly spaces out items */
+  align-items: center;
+  width: 100%; /* Ensures the items take full width */
+}
+
+/* Styling for navbar items */
+.nav-item {
+  list-style: none;
+}
+
+/* Navbar links styling */
+.nav-link {
+  color: #fcfcfd; /* Blue color for the links */
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem; /* Adds space around each link */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Active navbar link styling */
+.nav-link.active {
+  color: #fcfdfd; /* Darker blue for active link */
+}
+
+/* Hover effect for navbar links */
+.nav-link:hover {
+  color: #fdfeff; /* Darker blue when hovering */
+}
+
+/* Special styling for the logout link */
+.nav-link.logout {
+  color: #f4f3f9; /* Bootstrap red color */
+  font-weight: bold;
+}
+
+/* Hover effect for the logout link */
+.nav-link.logout:hover {
+  color: #f9f9fa; /* Darker red for hover */
+  text-decoration: underline;
+}
+/* Special styling for the logout button */
+.logout {
+  color: #fbfbfd; /* Red color for logout button */
+  font-weight: bold;
+  border: none;
+  background-color: transparent; /* Make button background transparent */
+  cursor: pointer;
+}
+
+/* Hover effect for the logout button */
+.logout:hover {
+  color: #f9f9fc; /* Darker red for hover */
+  text-decoration: underline;
+}
+
+/* Responsive styling for smaller screens (mobile-first design) */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column; /* Stack navbar items vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .nav-link {
+    padding: 1rem; /* Increase padding on mobile for better touch target */
+    width: 100%; /* Ensure links take full width on mobile */
+  }
+}
