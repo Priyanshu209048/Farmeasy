@@ -190,7 +190,7 @@
         <div class="col-md-5">
           <div class="card shadow-lg p-4">
             <h2 class="text-center">Register</h2>
-            <form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}">
+            <form novalidate action="" th:action="@{/do_register}" method="post" th:object="${farmer}">
               <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
                 <input
@@ -199,7 +199,7 @@
                   id="firstName"
                   name="firstName"
                   required
-                  th:value="${user.firstName}"
+                  th:value="${farmer.firstName}"
                 />
               </div>
               <div class="mb-3">
@@ -210,18 +210,18 @@
                   id="lastName"
                   name="lastName"
                   required
-                  th:value="${user.lastName}"
+                  th:value="${farmer.lastName}"
                 />
               </div>
               <div class="mb-3">
                 <label for="contact" class="form-label">Contact</label>
                 <input type="tel" class="form-control" id="contact" name="contact" required
-                th:value="${user.contact}"/>
+                th:value="${farmer.contact}"/>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" required
-                th:value="${user.email}"/>
+                th:value="${farmer.email}"/>
                 <div class="form-text">
                   We'll never share your email with anyone else.
                 </div>
@@ -234,7 +234,7 @@
                   id="password"
                   name="password"
                   required
-                  th:value="${user.password}"
+                  th:value="${farmer.password}"
                 />
               </div>
               <!--<div class="mb-3">

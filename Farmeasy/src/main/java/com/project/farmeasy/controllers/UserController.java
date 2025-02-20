@@ -1,9 +1,9 @@
 package com.project.farmeasy.controllers;
 
 import com.project.farmeasy.dao.LoanFormDao;
+import com.project.farmeasy.entities.Farmer;
 import com.project.farmeasy.entities.LoanForm;
-import com.project.farmeasy.services.UserService;
-import com.project.farmeasy.services.impl.UserServiceImpl;
+import com.project.farmeasy.services.impl.FarmerServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
@@ -16,14 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Optional;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/farmer")
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserServiceImpl userServiceImpl;
+    private final FarmerServiceImpl farmerServiceImpl;
     private final LoanFormDao loanFormDao;
 
     @GetMapping("/home")
@@ -53,21 +52,22 @@ public class UserController {
 
     @GetMapping("/form")
     public String form(Model model, Principal principal) {
-        if (!userServiceImpl.isUserSubmittedForm(principal.getName())) {
+        if (!farmerServiceImpl.isUserSubmittedForm(principal.getName())) {
             model.addAttribute("loanForm", new LoanForm());
             return "farmer/form";
         } else {
-            LoanForm loanForm = userServiceImpl.getLoanFormByEmail(principal.getName());
+            LoanForm loanForm = farmerServiceImpl.getLoanFormByEmail(principal.getName());
             model.addAttribute("loanForm", loanForm);
             return "farmer/updateForm";
         }
     }
 
     @PostMapping("/form")
-    public String loanFormProcess(@Valid @ModelAttribute("loanForm") LoanForm loanForm,
+    public String loanFormProcess(@Valid @ModelAttribute("loanForm") LoanForm loanForm, Principal principal,
                                   @RequestParam("documents") MultipartFile file, @RequestParam("pdfName") String pdfName, Model model) throws IOException {
         System.out.println("Before");
-        userServiceImpl.submitForm(loanForm, file, pdfName);
+        Farmer farmer = farmerServiceImpl.getUserByEmail(principal.getName());
+        farmerServiceImpl.submitForm(loanForm, file, pdfName, farmer.getId());
         System.out.println("After");
         model.addAttribute("loanForm", loanForm);
         return "farmer/dashboard";
@@ -78,7 +78,8 @@ public class UserController {
     public FileSystemResource download(@Param(value = "id") Integer id) {
         LoanForm loanForm = loanFormDao.findById(id).orElse(null);
         assert loanForm != null;
-        return new FileSystemResource(new File("D:/SpringBootProject/Farmeasy/src/main/resources/static/documents/" + loanForm.getPdfName()));
+        //return new FileSystemResource(new File("D:/SpringBootProject/Farmeasy/src/main/resources/static/documents/" + loanForm.getPdfName()));
+        return new FileSystemResource(new File(System.getProperty("user.dir") + "/src/main/resources/static/documents" + File.separator + loanForm.getPdfName()));
     }
 
 }

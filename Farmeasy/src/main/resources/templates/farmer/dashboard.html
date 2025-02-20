@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     />
     <title>FarmEasy</title>
-    <link rel="stylesheet" th:href="@{/farmer/style/style.css}">
+    <link rel="stylesheet" th:href="@{/farmers/style/style.css}">
     <script
       type="text/javascript"
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
@@ -46,12 +46,13 @@
     <!-- Navbar -->
     <nav id="menu">
       <ul>
-        <li><a th:href="@{/user/home}">&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a th:href="@{/farmer/home}">&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
         <li><a href="#page2-top">Our Services&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a th:href="@{/user/schemes}">NGOs & Government Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a th:href="@{/user/soilQuality}">Crop Rotation&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a th:href="@{/user/calender}">Crop Tracking System&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-        <li><a th:href="@{/user/form}">Apply for Loan</a></li>
+        <li><a th:href="@{/farmer/schemes}">NGOs & Government Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a th:href="@{/farmer/soilQuality}">Crop Rotation&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a th:href="@{/farmer/calender}">Crop Tracking System&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+        <li><a th:href="@{/farmer/form}">Apply for Loan</a></li>
+        <li><a th:href="@{/farmer/status}">Application Status</a></li>
       </ul>
     </nav>
     <div id="main">
@@ -59,7 +60,7 @@
         <!--<div id="cursor">
           <h5></h5>
         </div>-->
-        <video autoplay loop muted th:src="@{/farmer/videos/video1_4.mp4}"></video>
+        <video autoplay loop muted th:src="@{/farmers/videos/video1_4.mp4}"></video>
         <div id="page1-content">
           <nav>
             <!--<h4>Menu</h4>-->
@@ -83,29 +84,29 @@
               >
             </div>
 
-            <img th:src="@{/farmer/images/pic2.jpg}" alt="NGOs & Government Schemes" />
-            <video autoplay loop muted th:src="@{/farmer/videos/video2.mp4}"></video>
+            <img th:src="@{/farmers/images/pic2.jpg}" alt="NGOs & Government Schemes" />
+            <video autoplay loop muted th:src="@{/farmers/videos/video2.mp4}"></video>
           </div>
           <div class="box">
             <div class="content">
               <a th:href="@{/soilQuality.html}"><h4>Crop Rotation</h4></a>
             </div>
-            <img th:src="@{/farmer/images/pic3.jpg}" alt="Crop Rotation" />
-            <video autoplay loop muted th:src="@{/farmer/videos/video3.mp4}"></video>
+            <img th:src="@{/farmers/images/pic3.jpg}" alt="Crop Rotation" />
+            <video autoplay loop muted th:src="@{/farmers/videos/video3.mp4}"></video>
           </div>
           <div class="box">
             <div class="content">
               <a th:href="@{/calender.html}"><h4>Crop Tracking System</h4></a>
             </div>
-            <img th:src="@{/farmer/images/pic4.jpg}" alt="Crop Tracking System" />
-            <video autoplay loop muted th:src="@{/farmer/videos/video4.mp4}"></video>
+            <img th:src="@{/farmers/images/pic4.jpg}" alt="Crop Tracking System" />
+            <video autoplay loop muted th:src="@{/farmers/videos/video4.mp4}"></video>
           </div>
           <div class="box">
             <div class="content">
               <a th:href="@{/loan.html}"><h4>Apply For Loan</h4></a>
             </div>
-            <img th:src="@{/farmer/images/loan.jpg}" alt="Apply For Loan" />
-            <video autoplay loop muted th:src="@{/farmer/videos/video1_1.mp4}"></video>
+            <img th:src="@{/farmers/images/loan.jpg}" alt="Apply For Loan" />
+            <video autoplay loop muted th:src="@{/farmers/videos/video1_1.mp4}"></video>
           </div>
           <div class="box">
             <div class="content">
@@ -114,8 +115,8 @@
                 ><h4>Loan Eligibility</h4></a
               >
             </div>
-            <img th:src="@{/farmer/images/loan1.jpg}" alt="Loan Eligibility" />
-            <video autoplay loop muted th:src="@{/farmer/videos/video1_1.mp4}"></video>
+            <img th:src="@{/farmers/images/loan1.jpg}" alt="Loan Eligibility" />
+            <video autoplay loop muted th:src="@{/farmers/videos/video1_1.mp4}"></video>
           </div>
         </div>
       </div>
@@ -127,7 +128,7 @@
         style="
           margin-top: 50px;
           width: 100%;
-          background-image: url('/farmer/images/loanmainpage.jpg');
+          background-image: url('/farmers/images/loanmainpage.jpg');
           background-size: cover;
 
           background-position: center;
@@ -225,6 +226,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script th:src="@{/farmer/js/script.js}"></script>
+    <script th:src="@{/farmers/js/script.js}"></script>
   </body>
 </html>

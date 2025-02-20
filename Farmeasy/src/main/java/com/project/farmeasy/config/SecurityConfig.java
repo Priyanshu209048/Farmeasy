@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -41,19 +42,25 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
+    //This will not used because this class is already declared as bean which means it marked as a Component
+    /*@Bean
+    public AuthenticationSuccessHandler customSuccessHandler() {
+        return new CustomSuccessHandler();
+    }*/
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(request -> {
-                    request.requestMatchers("/gov/**").hasRole("GOV");
+                    request.requestMatchers("/gov/**").permitAll();
                     request.requestMatchers("/bank/**").hasRole("BANK");
                     request.requestMatchers("/user/**").hasRole("FARMER");
                     request.requestMatchers("/**").permitAll();
                 })
                 .formLogin(form -> form.loginPage("/farmerLogin")
                         .loginProcessingUrl("/do_login")
-                        .defaultSuccessUrl("/user/home")
+                        .successHandler(new CustomSuccessHandler())
                         .failureUrl("/farmerLogin?error=true"))
                 .logout(log -> log.logoutUrl("/logout").logoutSuccessUrl("/"));
 

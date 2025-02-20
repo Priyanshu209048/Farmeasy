@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/government/style/navbar.css}" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-gray-100 flex-col min-h-screen">
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-600">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">FarmEASY</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/}">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/overview}">Overview</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/grievances}">Grievances</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/subsidisedLoans}"
+                >Subsidised Loans</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" th:href="@{/gov/analytics}">Analytics</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gov/policyNotification}"
+                >Policy & Notifications</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <button class="btn btn-danger logout" onclick="logout()">
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Loan Statistics Summary -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-bold mb-4">Loan Statistics</h2>
+
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="border p-2">Total Loans</th>
+            <th class="border p-2">Approved Loans</th>
+            <th class="border p-2">Rejected Loans</th>
+            <th class="border p-2">Pending Loans</th>
+            <th class="border p-2">Disbursed Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td class="border p-2" id="totalLoans">0</td>
+
+            <td class="border p-2" id="approvedLoans">0</td>
+
+            <td class="border p-2" id="rejectedLoans">0</td>
+
+            <td class="border p-2" id="pendingLoans">0</td>
+
+            <td class="border p-2" id="disbursedAmount">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Loan Data Table -->
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold mb-4">Loan Applications</h2>
+
+      <div class="mb-4">
+        <label for="filterStatus" class="mr-2 font-bold">Filter:</label>
+        <select id="filterStatus" class="p-2 border rounded">
+          <option value="All">All</option>
+
+          <option value="Approved">Approved</option>
+
+          <option value="Pending">Pending</option>
+
+          <option value="Rejected">Rejected</option>
+        </select>
+      </div>
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="border p-2">Farmer Name</th>
+            <th class="border p-2">Scheme</th>
+            <th class="border p-2">Bank Name</th>
+            <th class="border p-2">Loan Amount</th>
+            <th class="border p-2">Application Date</th>
+            <th class="border p-2">Status</th>
+          </tr>
+        </thead>
+        <tbody id="loanTableBody">
+          <!-- Data will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+    <!-- Loan Statistics Pie Chart -->
+    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-bold mb-4">Loan Status Distribution</h2>
+      <canvas id="loanChart"></canvas>
+    </div>
+
+    <script>
+      let loans = [];
+
+      document
+        .getElementById("loanForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          let farmerName = document.getElementById("farmerName").value;
+          let scheme = document.getElementById("scheme").value;
+          let bankName = document.getElementById("bankName").value;
+          let loanAmount = parseFloat(
+            document.getElementById("loanAmount").value
+          );
+          let applicationDate =
+            document.getElementById("applicationDate").value;
+          let status = document.getElementById("status").value;
+
+          let newLoan = {
+            farmerName,
+            scheme,
+            bankName,
+            loanAmount,
+            applicationDate,
+            status,
+          };
+          loans.push(newLoan);
+          updateTable();
+          updateStatistics();
+          document.getElementById("loanForm").reset();
+        });
+
+      function updateTable() {
+        let tableBody = document.getElementById("loanTableBody");
+        tableBody.innerHTML = "";
+
+        loans.forEach((loan) => {
+          let row = (
+            <tr class="text-center">
+              <td class="border p-2">${loan.farmerName}</td>
+              <td class="border p-2">${loan.scheme}</td>
+              <td class="border p-2">${loan.bankName}</td>
+              <td class="border p-2">${loan.loanAmount}</td>
+              <td class="border p-2">${loan.applicationDate}</td>
+              <td class="border p-2">${loan.status}</td>
+            </tr>
+          );
+          tableBody.innerHTML += row;
+        });
+      }
+
+      function updateStatistics() {
+        let totalLoans = loans.length;
+        let approvedLoans = loans.filter(
+          (loan) => loan.status === "Approved"
+        ).length;
+        let rejectedLoans = loans.filter(
+          (loan) => loan.status === "Rejected"
+        ).length;
+        let pendingLoans = loans.filter(
+          (loan) => loan.status === "Pending"
+        ).length;
+        let disbursedAmount = loans
+          .filter((loan) => loan.status === "Approved")
+          .reduce((sum, loan) => sum + loan.loanAmount, 0);
+
+        document.getElementById("totalLoans").textContent = totalLoans;
+        document.getElementById("approvedLoans").textContent = approvedLoans;
+        document.getElementById("rejectedLoans").textContent = rejectedLoans;
+        document.getElementById("pendingLoans").textContent = pendingLoans;
+        document.getElementById("disbursedAmount").textContent =
+          disbursedAmount;
+
+        updateChart(approvedLoans, rejectedLoans, pendingLoans);
+      }
+
+      function updateChart(approved, rejected, pending) {
+        const ctx = document.getElementById("loanChart").getContext("2d");
+        if (window.loanChart) {
+          window.loanChart.destroy();
+        }
+        window.loanChart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["Approved", "Rejected", "Pending"],
+            datasets: [
+              {
+                data: [approved, rejected, pending],
+                backgroundColor: ["#4CAF50", "#F44336", "#FFC107"],
+              },
+            ],
+          },
+        });
+      }
+    </script>
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white text-center p-4 mt-6">
+      <p>© 2025 Loan & Grievance Portal. All rights reserved.</p>
+      <p>Developed by FarmEasy</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
