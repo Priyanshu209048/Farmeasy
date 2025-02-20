@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank Dashboard</title>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/bankStatic/style/style.css}" />
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img th:src="@{/bankStatic/images/logo.png}" alt="Logo" />
+            <h2>Farm<span class="danger">Easy</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a th:href="@{/bank/home}" class="active">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a th:href="@{/bank/appointment}" >
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Approval Status</h3>
+          </a>
+          <a th:href="@{/bank/customer}">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Customers</h3>
+          </a>
+          <a th:href="@{/bank/addScheme}">
+            <span class="material-icons-sharp"> add </span>
+            <h3>Add Schemes</h3>
+          </a>
+          <a th:href="@{/bank/grievance}">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Grievance</h3>
+          </a>
+          <!-- Yaha pe login ya register ka page ka link daal dena line no 42 mei-->
+          <a href="#" th:href="@{/logout}">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>    
+      </aside>
+
+      <main>
+        <h1>Dashboard</h1>
+        <div class="insights">
+          <!-- SALES -->
+          <div class="sales">
+            <span class="material-icons-sharp"> analytics </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Applications Recieved</h3>
+                <h1>1500</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>81%</p>
+                </div>
+              </div>
+            </div>
+            <small class="text-muted"> Last 24 hours </small>
+          </div>
+
+          <!-- EXPENSES -->
+          <div class="expenses">
+            <span class="material-icons-sharp"> bar_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Loan Processed</h3>
+                <h1>62%</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>62%</p>
+                </div>
+              </div>
+            </div>
+            <small class="text-muted"> Last 24 hours </small>
+          </div>
+
+          <!-- INCOME -->
+          <div class="income">
+            <span class="material-icons-sharp"> stacked_line_chart </span>
+            <div class="middle">
+              <div class="left">
+                <h3>Pending Applications</h3>
+                <h1>34%</h1>
+              </div>
+              <div class="progress">
+                <svg>
+                  <circle cx="38" cy="38" r="36"></circle>
+                </svg>
+                <div class="number">
+                  <p>34%</p>
+                </div>
+              </div>
+            </div>
+            <small class="text-muted"> Last 24 hours </small>
+          </div>
+        </div>
+
+        <div class="recent-orders">
+          <h2>Customer History</h2>
+          <table id="recent-orders--table">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Account Number</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Details</th>
+                <th></th>
+              </tr>
+            </thead>
+            <!-- Add tbody here | JS insertion -->
+          </table>
+          <a th:href="@{/bank/customer}">Show All</a>
+        </div>
+      </main>
+
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> menu </span>
+          </button>
+          <div class="theme-toggler">
+            <span class="material-icons-sharp active"> light_mode </span>
+            <span class="material-icons-sharp"> dark_mode </span>
+          </div>
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b>Admin</b></p>
+              <small class="text-muted">Admin</small>
+            </div>
+            <div class="profile-photo">
+              <img th:src="@{/bankStatic/images/profile-1.jpg}" alt="Profile Picture" />
+            </div>
+          </div>
+        </div>
+
+        <div class="sales-analytics">
+         
+          <div id="analytics">
+            <!-- Add items div here | JS insertion -->
+          </div>
+          <a th:href="@{/bank/addScheme}" class="item add-product">
+            <div>
+              <span class="material-icons-sharp"> add </span>
+              <h3>Add Schemes</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script th:src="@{/bankStatic/constants/recent-order-data.js}"></script>
+    <script th:src="@{/bankStatic/constants/update-data.js}"></script>
+    <script th:src="@{/bankStatic/constants/sales-analytics-data.js}"></script>
+    <script th:src="@{/bankStatic/js/index.js}"></script>
+  </body>
+</html>

@@ -1,0 +1,418 @@
+/* Grievance Page Styles */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: hidden;
+}
+
+/* Main container for grievances */
+.grievance-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: calc(100%);
+  margin-left: 80px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+}
+
+/* Individual sections */
+.grievance-stats,
+.grievance-list,
+.grievance-status {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.grievance-stats:hover,
+.grievance-list:hover,
+.grievance-status:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Aligning statistics and lists in columns */
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  background: #eef0f4;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.stats-container div {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.stats-container div:last-child {
+  border-right: none;
+}
+
+/* Grievance Sections in Columns */
+.grievance-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .grievance-content {
+    flex-direction: row;
+  }
+
+  .grievance-list, .grievance-status {
+    flex: 1;
+  }
+}
+
+/* General Styles for the Table */
+.grievance-table {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .grievance-table h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .grievance-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .grievance-table th,
+  .grievance-table td {
+    padding: 12px 15px;
+    text-align: center;
+  }
+  
+  .grievance-table th {
+    background-color: #7380ec;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .grievance-table td {
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .grievance-table tr:nth-child(even) td {
+    background-color: #f1f1f1;
+  }
+  
+  .grievance-table tr:hover td {
+    background-color: #e0e0e0;
+  }
+
+/* Table Styling */
+.grievance-list .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grievance-list .table th,
+.grievance-list .table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.grievance-list .table th {
+  background: #7380ec;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.grievance-list .table tr:hover {
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+
+/* Form Select */
+.form-select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #fff;
+  width: 200px;
+  cursor: pointer;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-select:focus {
+  border-color: #7380ec;
+  outline: none;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Button Styling */
+.button {
+  background: #7380ec;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background: #7380ec;
+  transform: translateY(-2px);
+}
+
+/* Chart Placeholder Styling */
+.grievance-status .text-center {
+  background: #eef0f4;
+  border-radius: 8px;
+  padding: 20px;
+  color: #666;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+  }
+
+  .stats-container div {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+  }
+
+  .stats-container div:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Root Variables (Consistent with Your Theme) */
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+  
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+  
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+  
+    --box-shadow: 0 2rem 3rem var(--color-light);
+  }
+  
+  /* General Styles for the Table */
+  .grievance-table {
+    margin: 20px;
+    font-family: 'Poppins', sans-serif; /* Consistent with your theme */
+  }
+  
+  .grievance-table h2 {
+    text-align: center;
+    color: var(--color-dark); /* Use your theme's dark color */
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    animation: fadeIn 1s ease-in-out; /* Fade-in animation for the heading */
+  }
+  
+  .grievance-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-white); /* Use your theme's white color */
+    box-shadow: var(--box-shadow); /* Consistent shadow */
+    border-radius: var(--border-radius-2); /* Use your theme's border radius */
+    overflow: hidden;
+    animation: slideIn 0.5s ease-in-out; /* Slide-in animation for the table */
+  }
+  
+  .grievance-table th,
+  .grievance-table td {
+    padding: 15px 20px;
+    text-align: center;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .grievance-table th {
+    background-color: var(--color-primary); /* Use your theme's primary color */
+    color: var(--color-white); /* White text for headers */
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .grievance-table td {
+    background-color: var(--color-background); /* Use your theme's background color */
+    color: var(--color-dark); /* Dark text for data */
+    font-size: 0.9rem;
+  }
+  
+  .grievance-table tr:nth-child(even) td {
+    background-color: var(--color-light); /* Alternate row color */
+  }
+  
+  .grievance-table tr:hover td {
+    background-color: var(--color-primary-variant); /* Hover effect */
+    color: var(--color-white); /* White text on hover */
+    transform: scale(1.02); /* Slight zoom effect on hover */
+    box-shadow: 0 4px 8px rgba(115, 128, 236, 0.2); /* Shadow on hover */
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Button Styling (if you have buttons in the table) */
+  .grievance-table button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .grievance-table button:hover {
+    background-color: var(--color-primary-variant);
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 8px rgba(115, 128, 236, 0.3); /* Shadow on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .grievance-table th,
+    .grievance-table td {
+      padding: 10px 15px;
+      font-size: 0.8rem;
+    }
+  
+    .grievance-table h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Additional Enhancements */
+  .grievance-table {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--padding-1);
+  }
+  
+  .grievance-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .grievance-table tr {
+    transition: all 0.3s ease;
+  }
+  
+  .grievance-table tr:hover {
+    transform: translateY(-2px); /* Lift effect for rows */
+  }
+  
+  /* Pulse Animation for Buttons */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .grievance-table button.pulse {
+    animation: pulse 1.5s infinite; /* Continuous pulse animation */
+  }
+  
+  /* Gradient Background for Headers */
+  .grievance-table th {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-variant));
+  }
