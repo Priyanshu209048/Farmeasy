@@ -1,11 +1,18 @@
 package com.project.farmeasy.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "bank")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Bank {
 
     @Id
@@ -17,8 +24,20 @@ public class Bank {
     private String bankCity;
     private String bankState;
     private String bankZip;
-    private String bankEmail;
+    private String email;
     private String bankPhone;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bank")
+    private List<Scheme> schemes = new ArrayList<>();
 
+    public Bank(int id, String bankName, String bankAddress, String bankCity, String bankState, String bankZip, String email, String bankPhone) {
+        this.id = id;
+        this.bankName = bankName;
+        this.bankAddress = bankAddress;
+        this.bankCity = bankCity;
+        this.bankState = bankState;
+        this.bankZip = bankZip;
+        this.email = email;
+        this.bankPhone = bankPhone;
+    }
 }

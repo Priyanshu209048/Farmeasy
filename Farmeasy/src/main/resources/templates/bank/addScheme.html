@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/bankStatic/style/style.css}" />
+    <!-- <link rel="stylesheet" href="./form/styles.css"> -->
+  </head>
+  <body>
+    <div class="container">
+      <aside>
+        <div class="top">
+          <div class="logo">
+            <img th:src="@{/bankStatics/images/logo.png}" alt="Logo" />
+            <h2>Farm<span class="danger">Easy</span></h2>
+          </div>
+          <div class="close" id="close-btn">
+            <span class="material-icons-sharp"> close </span>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <a th:href="@{/bank/home}" class="active">
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Dashboard</h3>
+          </a>
+          <a th:href="@{/bank/appointment}" >
+            <span class="material-icons-sharp"> dashboard </span>
+            <h3>Approval Status</h3>
+          </a>
+          <a th:href="@{/bank/customer}">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Customers</h3>
+          </a>
+          <a th:href="@{/bank/addScheme}">
+            <span class="material-icons-sharp"> add </span>
+            <h3>Add Schemes</h3>
+          </a>
+          <a th:href="@{/bank/grievance}">
+            <span class="material-icons-sharp"> person_outline </span>
+            <h3>Grievance</h3>
+          </a>
+          <!-- Yaha pe login ya register ka page ka link daal dena line no 42 mei-->
+          <a href="#" th:href="@{/logout}">
+            <span class="material-icons-sharp"> logout </span>
+            <h3>Logout</h3>
+          </a>
+        </div>    
+      </aside>
+
+      <main>
+        <h1>Add Schemes</h1>
+        <form id="registerForm" class="form-container" novalidate action="" th:action="@{/bank/do_scheme}" method="post" th:object="${scheme}">
+          <h2 class="sub-header">New Scheme</h2>
+          <label for="schemeName">Title of Scheme</label>
+          <input type="text" id="schemeName" name="schemeName" placeholder="Title" required>
+
+          <label for="schemeCode">Unique Scheme Code</label>
+          <input type="text" id="schemeCode" name="schemeName" placeholder="Scheme Code" required>
+          
+          <label for="schemeDescription">Scheme Description</label>
+          <textarea id="schemeDescription" name="schemeDescription" placeholder="Comments"></textarea>
+
+          <label for="benefits">Benefits:</label>
+          <textarea id="benefits" name="benefits" rows="4" placeholder="Enter benefits of the scheme"></textarea>
+
+          <label for="eligibility">Eligibility:</label>
+        <textarea id="eligibility" name="eligibility" rows="4" placeholder="Enter eligibility criteria"></textarea>
+
+        <label for="documents">Documents Required:</label>
+        <textarea id="documents" name="documents" rows="4" placeholder="List the required documents"></textarea>
+ 
+        <label for="roi">Rate Of Interest</label>
+        <input type="number" id="roi" name="roi" placeholder="Enter a numerical value">
+        
+        <label for="tenure">Tenure</label>
+        <select id="tenure" name="tenure">
+            <option value="loan">1 Year</option>
+            <option value="grant">2 Years</option>
+            <option value="grant">3 Years</option>
+            <option value="grant">4 Years</option>
+            <option value="grant">5 Years</option>
+            <option value="grant">Not Applicable</option>
+        </select>
+
+        <label for="schemeType">Scheme Type:</label>
+        <select id="schemeType" name="schemeType">
+            <option value="loan">Loan</option>
+            <option value="grant">Grant</option>
+        </select>
+
+          <button type="submit" class="submit-btn">Submit and Continue</button>
+      </form>
+      </main>
+
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp"> menu </span>
+          </button>
+          <div class="theme-toggler">
+            <span class="material-icons-sharp active"> light_mode </span>
+            <span class="material-icons-sharp"> dark_mode </span>
+          </div>
+          <div class="profile">
+            <div class="info">
+              <p>Hey, <b>Admin</b></p>
+              <small class="text-muted">Admin</small>
+            </div>
+            <div class="profile-photo">
+              <img th:src="@{/bankStatic/images/profile-1.jpg}" alt="Profile Picture" />
+            </div>
+          </div>
+        </div>
+
+        <div class="sales-analytics">
+          <div id="analytics">
+            <!-- Add items div here | JS insertion -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script th:src="@{/bankStatic/constants/recent-order-data.js}"></script>
+    <script th:src="@{/bankStatic/constants/update-data.js}"></script>
+    <script th:src="@{/bankStatic/constants/sales-analytics-data.js}"></script>
+    <script th:src="@{/bankStatic/js/index.js}"></script>
+  </body>
+</html>

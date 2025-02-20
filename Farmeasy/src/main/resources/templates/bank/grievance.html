@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grievance Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet" th:href="@{/bankStatic/style/style.css}">
+    <link rel="stylesheet" th:href="@{/bankStatic/style/grievance.css}">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img th:src="@{/bankStatic/images/logo.png}" alt="Logo">
+                    <h2>Farm<span class="danger">Easy</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a th:href="@{/bank/home}">
+                    <span class="material-icons-sharp"> dashboard </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a th:href="@{/bank/appointment}" >
+                    <span class="material-icons-sharp"> dashboard </span>
+                    <h3>Approval Status</h3>
+                </a>
+                <a th:href="@{/bank/customer}">
+                    <span class="material-icons-sharp"> person_outline </span>
+                    <h3>Customers</h3>
+                </a>
+                <a th:href="@{/bank/addScheme}">
+                    <span class="material-icons-sharp"> add </span>
+                    <h3>Add Schemes</h3>
+                </a>
+                <a th:href="@{/bank/grievance}" class="active">
+                    <span class="material-icons-sharp"> person_outline </span>
+                    <h3>Grievance</h3>
+                </a>
+                <a href="#" th:href="@{/logout}">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="grievance-container">
+            <div class="grievance-table">
+                <h2>Grievance Statistics</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Total Grievances</th>
+                            <th>Resolved</th>
+                            <th>Unresolved</th>
+                            <th>Under Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="grievance-list">
+                <h4>Grievances List</h4>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <label class="me-2"><span class="material-icons-sharp">filter_alt</span> Filter by Status:</label>
+                        <select class="form-select w-auto">
+                            <option>All</option>
+                            <option>Resolved</option>
+                            <option>Unresolved</option>
+                            <option>Under Review</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Farmer Name</th>
+                            <th scope="col">Bank Name</th>
+                            <th scope="col">Previous Type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <span class="material-icons-sharp">info</span>
+                                <p>No grievances found</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="grievance-status">
+                <h4>Grievances Status Distribution</h4>
+                <div class="text-center py-5">
+                    <span class="material-icons-sharp">insert_chart</span>
+                    <p>Chart will be displayed here</p>
+                </div>
+            </div>
+        </main>        
+    </div>
+</body>
+</html>

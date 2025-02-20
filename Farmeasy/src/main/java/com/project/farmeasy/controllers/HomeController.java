@@ -1,6 +1,7 @@
 package com.project.farmeasy.controllers;
 
 import com.project.farmeasy.entities.Farmer;
+import com.project.farmeasy.entities.User;
 import com.project.farmeasy.services.FarmerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -96,12 +97,18 @@ public class HomeController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            Farmer farmer = (Farmer) userDetails;
+            User user = (User) userDetails;
 
-            model.addAttribute("user", farmer);
+            model.addAttribute("user", user);
 
             System.out.println("Hello");
-            return "redirect:/user/home";
+            if (user.getRole().equals("ROLE_FARMER")) {
+                return "redirect:/user/home";
+            } else if (user.getRole().equals("ROLE_BANK")) {
+                return "redirect:/bank/home";
+            } else {
+                return "redirect:/gov/home";
+            }
         } catch (BadCredentialsException e) {
             model.addAttribute("errorMessage", "Invalid username or password.");
             return "FarmerLogin";

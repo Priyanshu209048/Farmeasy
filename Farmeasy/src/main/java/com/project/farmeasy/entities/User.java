@@ -2,11 +2,15 @@ package com.project.farmeasy.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "user")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -14,7 +18,6 @@ public class User {
     private int id;
 
     @Column(name = "EMAIL", unique = true)
-    @Email(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
     @Column(name = "PASSWORD")
