@@ -1,16 +1,15 @@
 package com.project.farmeasy.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "bank")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Bank {
@@ -29,6 +28,9 @@ public class Bank {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bank")
     private List<Scheme> schemes = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bank")
+    private List<Grievences> grievences = new ArrayList<>();
 
     public Bank(int id, String bankName, String bankAddress, String bankCity, String bankState, String bankZip, String email, String bankPhone) {
         this.id = id;

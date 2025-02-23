@@ -1,5 +1,6 @@
 package com.project.farmeasy.services;
 
+import com.project.farmeasy.entities.Apply;
 import com.project.farmeasy.entities.Bank;
 import com.project.farmeasy.entities.Scheme;
 
@@ -11,5 +12,8 @@ public interface BankService {
     Scheme addScheme(Scheme scheme, Bank bank);
     List<Bank> getBanks();
     List<Scheme> getSchemes();
+    List<Apply> getApplies();
+    void updateApply(Apply apply, String status);
+    Apply getApply(Integer id);
 
 }

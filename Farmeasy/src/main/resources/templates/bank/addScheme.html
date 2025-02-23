@@ -10,24 +10,23 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
       rel="stylesheet"
     />
-    <link rel="stylesheet" th:href="@{/bankStatic/style/style.css}" />
-    <!-- <link rel="stylesheet" href="./form/styles.css"> -->
+    <link rel="stylesheet" th:href="@{/bankStatic/style/scheme.css}" />
   </head>
   <body>
     <div class="container">
       <aside>
         <div class="top">
-          <div class="logo">
+          <!--<div class="logo">
             <img th:src="@{/bankStatics/images/logo.png}" alt="Logo" />
             <h2>Farm<span class="danger">Easy</span></h2>
           </div>
           <div class="close" id="close-btn">
             <span class="material-icons-sharp"> close </span>
-          </div>
+          </div>-->
         </div>
 
         <div class="sidebar">
-          <a th:href="@{/bank/home}" class="active">
+          <!--<a th:href="@{/bank/home}" class="active">
             <span class="material-icons-sharp"> dashboard </span>
             <h3>Dashboard</h3>
           </a>
@@ -47,16 +46,16 @@
             <span class="material-icons-sharp"> person_outline </span>
             <h3>Grievance</h3>
           </a>
-          <!-- Yaha pe login ya register ka page ka link daal dena line no 42 mei-->
+          &lt;!&ndash; Yaha pe login ya register ka page ka link daal dena line no 42 mei&ndash;&gt;
           <a href="#" th:href="@{/logout}">
             <span class="material-icons-sharp"> logout </span>
             <h3>Logout</h3>
-          </a>
-        </div>    
+          </a>-->
+        </div>
       </aside>
 
       <main>
-        <h1>Add Schemes</h1>
+        <h1 style="text-align: center">Add Schemes</h1>
         <form id="registerForm" class="form-container" novalidate action="" th:action="@{/bank/do_scheme}" method="post" th:object="${scheme}">
           <h2 class="sub-header">New Scheme</h2>
           <label for="schemeName">Title of Scheme</label>
@@ -102,7 +101,7 @@
 
       <div class="right">
         <div class="top">
-          <button id="menu-btn">
+          <!--<button id="menu-btn">
             <span class="material-icons-sharp"> menu </span>
           </button>
           <div class="theme-toggler">
@@ -117,7 +116,7 @@
             <div class="profile-photo">
               <img th:src="@{/bankStatic/images/profile-1.jpg}" alt="Profile Picture" />
             </div>
-          </div>
+          </div>-->
         </div>
 
         <div class="sales-analytics">

@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "FARMER")
 @Data
@@ -13,7 +18,9 @@ public class Farmer {
 
     @Id
     @Column(name = "USER_ID")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", allocationSize = 1)
+    private int id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -30,5 +37,16 @@ public class Farmer {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "farmer")
+    private List<Apply> apply = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "farmer")
+    private List<Grievences> grievences = new ArrayList<>();
+
+    /*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "farmer_scheme", joinColumns = @JoinColumn(name = "farmer", referencedColumnName = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "scheme", referencedColumnName = "id"))
+    private Set<Scheme> scheme = new HashSet<>();*/
 
 }

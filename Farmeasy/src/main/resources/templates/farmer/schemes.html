@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     />
     <title>FarmEasy</title>
-    <link rel="stylesheet" th:href="@{/farmers/style/style.css}" />
+    <link rel="stylesheet" th:href="@{/farmer/style/style.css}" />
     <script
       type="text/javascript"
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
@@ -40,17 +40,18 @@
     <main>
       <div id="google_translate_element"></div>
       <div id="page3">
-        <video autoplay loop muted th:src="@{/farmers/videos/video6.mp4}"></video>
+        <video autoplay loop muted th:src="@{/farmer/videos/video6.mp4}"></video>
         <nav id="menu">
           <h4>Menu</h4>
           <ul>
             <li><a th:href="@{/farmer/home}">&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a href="#">Our Services&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a th:href="@{/farmer/schemes}">NGOs & Government Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/schemes}">NGOs & Gov Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/farmer/soilQuality}">Crop Rotation&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/farmer/calender}">Crop Tracking System&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a th:href="@{/farmer/loan}">Apply for Loan&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/form}">Apply for Loan&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/farmer/status}">Application Status&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/schemeApply}">Schemes&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/grievences}">Grievences&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/logout}">Logout</a></li>
           </ul>
         </nav>

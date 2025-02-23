@@ -30,7 +30,7 @@
     />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" th:href="@{/farmers/style/style.css}" />
+    <link rel="stylesheet" th:href="@{/farmer/style/style.css}" />
 
     <!-- Google Translate -->
     <script
@@ -54,17 +54,18 @@
 
     <main>
       <div id="page3">
-        <video autoplay loop muted th:src="@{/farmers/videos/video1_1.mp4}"></video>
+        <video autoplay loop muted th:src="@{/farmer/videos/video1_1.mp4}"></video>
         <nav id="menu">
           <h4>Menu</h4>
           <ul>
             <li><a th:href="@{/farmer/home}">&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a href="#services">Our Services</a></li>
-            <li><a th:href="@{/farmer/schemes}">NGOs & Government Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/schemes}">NGOs & Gov Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/farmer/soilQuality}">Crop Rotation&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/farmer/calender}">Crop Tracking System&nbsp;&nbsp;&nbsp;</a></li>
-            <li><a th:href="@{/farmer/loan}" class="active">Apply for Loan&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/form}" class="active">Apply for Loan&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/farmer/status}">Application Status&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/schemeApply}">Schemes&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/grievences}">Grievences&nbsp;&nbsp;&nbsp;</a></li>
             <li><a th:href="@{/logout}">Logout</a></li>
           </ul>
         </nav>

@@ -37,7 +37,6 @@ public class FarmerServiceImpl implements FarmerService {
             throw new IllegalArgumentException("Password cannot be null");
         }
         User user = new User();
-        farmer.setId(UUID.randomUUID().toString());
         user.setEmail(farmer.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(farmer.getPassword()));
         user.setRole("ROLE_FARMER");
@@ -82,7 +81,7 @@ public class FarmerServiceImpl implements FarmerService {
     }
 
     @Override
-    public void submitForm(LoanForm loanForm, MultipartFile file, String pdfName, String userId) throws IOException {
+    public void submitForm(LoanForm loanForm, MultipartFile file, String pdfName, int userId) throws IOException {
         System.out.println("Start submit form");
         String pdfUUID;
         if (!file.isEmpty()) {

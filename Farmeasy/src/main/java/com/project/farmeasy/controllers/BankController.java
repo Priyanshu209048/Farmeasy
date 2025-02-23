@@ -1,6 +1,7 @@
 package com.project.farmeasy.controllers;
 
 import com.project.farmeasy.dao.BankDao;
+import com.project.farmeasy.entities.Apply;
 import com.project.farmeasy.entities.Bank;
 import com.project.farmeasy.entities.Farmer;
 import com.project.farmeasy.entities.Scheme;
@@ -10,12 +11,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,30 +30,68 @@ public class BankController {
         return "bank/index";
     }
 
-    @GetMapping("/grievance")
+    @GetMapping("/grievances")
     public String grievance(Model model) {
-        return "bank/grievance";
+        return "bank/grievances";
     }
 
     @GetMapping("/addScheme")
-    public String scheme(Model model) {
+    public String addScheme(Model model) {
         model.addAttribute("scheme", new Scheme());
         return "bank/addScheme";
+    }
+
+    @GetMapping("/schemes")
+    public String schemes(Model model) {
+        List<Scheme> scheme = bankService.getSchemes();
+        model.addAttribute("scheme", scheme);
+        return "bank/schemes";
+    }
+
+    @GetMapping("/ldstracker")
+    public String ldstracker(Model model) {
+        return "bank/ldstracker";
+    }
+
+    @GetMapping("/loanReports")
+    public String loanReports(Model model) {
+        return "bank/loanReports";
     }
 
     @PostMapping("/do_scheme")
     public String schemeProcess(@Valid @ModelAttribute("scheme") Scheme sc, Model model, Principal principal) {
         try {
+            System.out.println("Begin");
             String username = principal.getName();
             Bank bank = bankDao.findByEmail(username);
             Scheme scheme = bankService.addScheme(sc, bank);
             model.addAttribute("scheme", scheme);
+            System.out.println("End");
             return "bank/index";
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("scheme", new Scheme());
             return "bank/addScheme";
         }
+    }
+
+    @GetMapping("/loanApplications")
+    public String loanApplication(Model model) {
+        List<Apply> applies = bankService.getApplies();
+        model.addAttribute("applies", applies);
+        return "bank/loanApplications";
+    }
+
+    @PostMapping("/do_loanApplications/{id}")
+    public String loanApplicationProcess(@PathVariable("id") Integer id, @RequestParam("review") String review, Model model, Principal principal) {
+        Apply apply = bankService.getApply(id);
+        System.out.println(review);
+
+        bankService.updateApply(apply, review);
+        List<Apply> applies = bankService.getApplies();
+        model.addAttribute("applies", applies);
+
+        return "redirect:/bank/loanApplications";
     }
 
 }

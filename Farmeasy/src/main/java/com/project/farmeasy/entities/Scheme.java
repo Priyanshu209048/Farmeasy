@@ -1,12 +1,17 @@
 package com.project.farmeasy.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "scheme")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Scheme {
 
     @Id
@@ -25,5 +30,8 @@ public class Scheme {
     @ManyToOne
     @JoinColumn(name = "bank_id", nullable = false)
     private Bank bank;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "scheme")
+    private List<Apply> apply = new ArrayList<>();
 
 }

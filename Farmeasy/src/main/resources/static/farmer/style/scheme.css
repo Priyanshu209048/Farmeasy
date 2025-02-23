@@ -1,0 +1,116 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header Section */
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.subheading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Container Styling */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+/* Search Section */
+.search-section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.search-section select, .search-btn {
+    padding: 8px;
+    font-size: 16px;
+}
+
+.search-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styling */
+.loan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.loan-table th, .loan-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.loan-table th {
+    background-color: #ffcc00;
+    color: black;
+}
+
+/* Buttons */
+.locator-btn, .apply-btn {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.locator-btn {
+    background-color: #28a745;
+    color: white;
+    margin-right: 5px;
+}
+
+.locator-btn:hover {
+    background-color: #218838;
+}
+
+.apply-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.apply-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .loan-table th, .loan-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

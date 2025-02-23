@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidya Lakshmi - Loan Application</title>
+    <link rel="stylesheet" th:href="@{/bankStatic/style/statusStyle.css}">
+</head>
+<body>
+
+    <header>
+        
+        <nav>
+          <!-- nav bar aayega yaha  -->
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome Abhishek Mishra</h2>
+        <section class="applications">
+            <h3>MY APPLICATIONS</h3>
+            <p class="note">
+                1. Click on Application ID to view or download the submitted application form. <br>
+                2. Click on Status of loan application to view the status history of your applications.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Bank Name</th>
+                        <th>Branch Name & Preferred branch IFSC code</th>
+                        <th>Loan Required Amount (In Rs)</th>
+                        <th>Scheme Name</th>
+                        <th>Application ID</th>
+                        <th>Application Date</th>
+                        <th>Status</th>
+                        <th>Remarks from Bank</th>
+                        <th>Disbursed Amount (In Rs)</th>
+                        <th>Disbursement Date</th>
+                        <th>Report Grievance</th>
+                        <th>Channel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Canara Bank</td>
+                        <td>DELHI KINGSWAY-G T B NAGAR CNRB0019033</td>
+                        <td>Rs.691,000</td>
+                        <td>VIDYA TURANT</td>
+                        <td><a href="#">1244140</a></td>
+                        <td>14-Nov-2021</td>
+                        <td class="status">Disbursed</td>
+                        <td><input type="text" value="approve"></td>
+                        <td>Rs.69,500</td>
+                        <td>13-Dec-2021</td>
+                        <td><button class="grievance-btn">Report Grievance</button></td>
+                        <td>PORTAL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright 2024 | Powered by Protean eGov Technologies Limited - 
+            Building nationally critical and population scale Digital Public Infrastructure for the nation.
+        </p>
+    </footer>
+
+</body>
+</html>

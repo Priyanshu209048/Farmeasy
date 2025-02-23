@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Loan Portal</title>
+    <link rel="stylesheet" th:href="@{/farmer/style/scheme.css}">
+    <link rel="stylesheet" th:href="@{/farmer/style/style.css}">
+</head>
+<body>
+
+    <nav id="menu">
+        <ul>
+            <li><a th:href="@{/farmer/home}">&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/schemes}">NGOs & Gov Schemes&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/soilQuality}">Crop Rotation&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/calender}">Crop Tracking System&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/form}">Apply for Loan&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/status}">Application Status&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/schemeApply}">Schemes&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/farmer/grievences}">Grievences&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!--<header>
+        <h1>Farmer Loan Portal</h1>
+        <p class="subheading">SEARCH & APPLY FOR LOAN</p>
+    </header>-->
+
+    <div class="container" style="margin-top: 100px">
+        <div class="search-section">
+            <label for="bankFilter">Search By</label>
+            <select id="bankFilter">
+                <option value="all">ALL</option>
+                <option value="sbi">State Bank of India</option>
+                <option value="pnb">Punjab National Bank</option>
+            </select>
+            <select id="schemeFilter">
+                <option value="all">ALL</option>
+                <option value="gold">Agri Gold Loan</option>
+                <option value="credit">Kisan Credit Card</option>
+            </select>
+            <select id="typeFilter">
+                <option value="all">ALL</option>
+                <option value="short-term">Short Term</option>
+                <option value="long-term">Long Term</option>
+            </select>
+            <button class="search-btn">Search</button>
+        </div>
+
+        <table class="loan-table">
+            <thead>
+                <tr>
+                    <th>Bank</th>
+                    <th>Loan Scheme Name</th>
+                    <th>Tenure Period</th>
+                    <th>Interest Rate</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="sc : ${scheme}" th:object="${apply}">
+                    <td th:text="${sc.getBank().getBankName()}">State Bank of India</td>
+                    <td th:text="${sc.getSchemeName()}">Agri Gold Loan</td>
+                    <td th:text="${sc.getTenure()}">5 Years</td>
+                    <td th:text="${sc.getRoi()}">6.5%</td>
+                    <td th:text="${sc.getSchemeDescription()}">Loan against gold for farmers</td>
+                    <form method="post" th:action="@{'/farmer/apply/'+${sc.getId()}}">
+                        <td><input type="text" id="amount" name="amount" placeholder="50000"></td>
+                        <td>
+                            <button type="submit" class="apply-btn" th:onclick="|applyLoan('Agri Gold Loan', 'State Bank of India')|">Apply</button>
+                        </td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function applyLoan(scheme, bank) {
+            alert(`You have applied for the ${scheme} from ${bank}.`);
+        }
+    </script>
+
+</body>
+</html>
