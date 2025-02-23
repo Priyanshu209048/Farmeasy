@@ -16,7 +16,7 @@ public interface FarmerService {
     Boolean isUserExistByEmail(String email);
     Boolean isUserExistByUserid(String id);
 
-    void submitForm(LoanForm loanForm, MultipartFile file, String fileName, String userId) throws IOException;
+    void submitForm(LoanForm loanForm, MultipartFile file, String fileName, int userId) throws IOException;
     Boolean isUserSubmittedForm(String email);
     LoanForm getLoanFormByEmail(String email);
     LoanForm updateLoanForm(LoanForm loanForm);
