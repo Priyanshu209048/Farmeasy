@@ -18,7 +18,7 @@
   </head>
   <body class="bg-gray-100">
     <!-- Menu Button -->
-    <button class="menu-btn" onclick="toggleSidebar()">☰ Menu</button>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
     <!-- Sidebar Navigation -->
     <div id="sidebar" class="sidebar">
@@ -28,7 +28,7 @@
       <a th:href="@{/bank/loanReports}">📢 Loan Reports</a>
       <a th:href="@{/bank/schemes}">📃 Schemes</a>
       <a th:href="@{/bank/grievances}">⚠️ Grievances</a>
-      <a href="#" class="text-danger" onclick="logout()">🚪 Logout</a>
+      <a th:href="@{/logout}" class="text-danger" onclick="logout()">🚪 Logout</a>
     </div>
 
     <!-- Page Content -->

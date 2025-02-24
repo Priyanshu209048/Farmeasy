@@ -5,7 +5,7 @@ import com.project.farmeasy.dao.LoanFormDao;
 import com.project.farmeasy.dao.SchemeDao;
 import com.project.farmeasy.entities.*;
 import com.project.farmeasy.services.BankService;
-import com.project.farmeasy.services.impl.FarmerServiceImpl;
+import com.project.farmeasy.services.FarmerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final FarmerServiceImpl farmerServiceImpl;
+    private final FarmerService farmerService;
     private final LoanFormDao loanFormDao;
     private final BankService bankService;
     private final ApplyDao applyDao;
@@ -60,11 +59,11 @@ public class UserController {
 
     @GetMapping("/form")
     public String form(Model model, Principal principal) {
-        if (!farmerServiceImpl.isUserSubmittedForm(principal.getName())) {
+        if (!farmerService.isUserSubmittedForm(principal.getName())) {
             model.addAttribute("loanForm", new LoanForm());
             return "farmer/form";
         } else {
-            LoanForm loanForm = farmerServiceImpl.getLoanFormByEmail(principal.getName());
+            LoanForm loanForm = farmerService.getLoanFormByEmail(principal.getName());
             model.addAttribute("loanForm", loanForm);
             return "farmer/updateForm";
         }
@@ -76,8 +75,8 @@ public class UserController {
         if (!loanForm.getEmail().equals(principal.getName())) {
             return "farmer/form";
         }
-        Farmer farmer = farmerServiceImpl.getUserByEmail(principal.getName());
-        farmerServiceImpl.submitForm(loanForm, file, pdfName, farmer.getId());
+        Farmer farmer = farmerService.getUserByEmail(principal.getName());
+        farmerService.submitForm(loanForm, file, pdfName, farmer.getId());
         model.addAttribute("loanForm", loanForm);
         return "farmer/dashboard";
     }
@@ -89,8 +88,8 @@ public class UserController {
         if (!loanForm.getEmail().equals(principal.getName())) {
             return "farmer/updateForm";
         }
-        Farmer farmer = farmerServiceImpl.getUserByEmail(principal.getName());
-        farmerServiceImpl.submitForm(loanForm, file, pdfName, farmer.getId());
+        Farmer farmer = farmerService.getUserByEmail(principal.getName());
+        farmerService.submitForm(loanForm, file, pdfName, farmer.getId());
         System.out.println("After");
         model.addAttribute("loanForm", loanForm);
         return "farmer/dashboard";
@@ -108,7 +107,7 @@ public class UserController {
     @GetMapping("/schemeApply")
     public String schemeApply(Model model, Principal principal) {
         String username = principal.getName();
-        Farmer farmer = farmerServiceImpl.getUserByEmail(username);
+        Farmer farmer = farmerService.getUserByEmail(username);
         List<Scheme> scheme = bankService.getSchemes();
 
         model.addAttribute("farmer", farmer);
@@ -121,7 +120,7 @@ public class UserController {
     @PostMapping("/apply/{id}")
     public String applyProcess(@PathVariable("id") Integer id, @RequestParam("amount") String amount, Model model, Principal principal) {
         String username = principal.getName();
-        Farmer farmer = farmerServiceImpl.getUserByEmail(username);
+        Farmer farmer = farmerService.getUserByEmail(username);
         Scheme scheme = schemeDao.findById(id).orElse(null);
 
         System.out.println(amount);
@@ -130,7 +129,10 @@ public class UserController {
         apply.setScheme(scheme);
         apply.setDate(LocalDate.now());
         apply.setAmount(amount);
+        assert scheme != null;
+        apply.setBank(scheme.getBank());
         apply.setStatusDate("-");
+        apply.setReview("-");
         apply.setStatus("Pending");
         applyDao.save(apply);
         return "redirect:/farmer/home";
@@ -139,7 +141,6 @@ public class UserController {
     @GetMapping("/grievences")
     public String grievences(Model model) {
         model.addAttribute("grievences", new Grievences());
-        model.addAttribute("farmer", new Farmer());
         model.addAttribute("banks", bankService.getBanks());
         return "farmer/grievences";
     }
@@ -147,16 +148,18 @@ public class UserController {
     @PostMapping("/processGrievences")
     public String processGrievences(@Valid @ModelAttribute("grievences") Grievences grievences, Model model, Principal principal) {
         String username = principal.getName();
-        Farmer farmer = farmerServiceImpl.getUserByEmail(username);
+        Farmer farmer = farmerService.getUserByEmail(username);
+        farmerService.addGrievence(grievences, farmer);
 
-        System.out.println(grievences.getGrievencesReview());
-        System.out.println(grievences.getGrievencesType());
-        System.out.println(grievences.getBank().getBankName());
         return "redirect:/farmer/home";
     }
 
     @GetMapping("/status")
-    public String status(Model model) {
+    public String status(Model model, Principal principal) {
+        String username = principal.getName();
+        Farmer farmer = farmerService.getUserByEmail(username);
+
+        model.addAttribute("apply", bankService.getApplyByFarmer(farmer));
         return "farmer/status";
     }
 

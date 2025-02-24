@@ -53,7 +53,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(request -> {
-                    request.requestMatchers("/gov/**").permitAll();
+                    request.requestMatchers("/gov/**").hasRole("GOV");
                     request.requestMatchers("/bank/**").hasRole("BANK");
                     request.requestMatchers("/farmer/**").hasRole("FARMER");
                     request.requestMatchers("/**").permitAll();

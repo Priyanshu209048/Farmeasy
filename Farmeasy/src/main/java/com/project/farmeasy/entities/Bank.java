@@ -30,6 +30,9 @@ public class Bank {
     private List<Scheme> schemes = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bank")
+    private List<Apply> apply = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bank")
     private List<Grievences> grievences = new ArrayList<>();
 
     public Bank(int id, String bankName, String bankAddress, String bankCity, String bankState, String bankZip, String email, String bankPhone) {

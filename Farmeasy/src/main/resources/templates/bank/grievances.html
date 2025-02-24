@@ -28,7 +28,7 @@
       <a th:href="@{/bank/loanReports}">📢 Loan Reports</a>
       <a th:href="@{/bank/schemes}">📃 Schemes</a>
       <a th:href="@{/bank/grievances}">⚠️ Grievances</a>
-      <a href="#" class="text-danger" onclick="logout()">🚪 Logout</a>
+      <a th:href="@{/logout}" class="text-danger" onclick="logout()">🚪 Logout</a>
     </div>
 
     <!-- Page Content -->
@@ -50,7 +50,7 @@
       <div class="bg-white p-6 rounded-lg shadow-md mb-6">
         <h2 class="text-xl font-bold mb-4">Grievance Statistics</h2>
         <table class="w-full border-collapse border border-gray-300">
-          <thead class="bg-gray-200">
+          <thead class="bg-gray-200 text-center">
             <tr>
               <th class="border p-2">Total Grievances</th>
               <th class="border p-2">Resolved</th>
@@ -82,7 +82,7 @@
           </select>
         </div>
         <table class="w-full border-collapse border border-gray-300">
-          <thead class="bg-gray-200">
+          <thead class="bg-gray-200 text-center">
             <tr>
               <th class="border p-2">Date</th>
               <th class="border p-2">Farmer Name</th>
@@ -92,7 +92,16 @@
               <th class="border p-2">Status</th>
             </tr>
           </thead>
-          <tbody id="grievance-table" class="text-center"></tbody>
+          <tbody class="text-center">
+            <tr th:each="gr : ${grievences}">
+              <td th:text="${gr.getGrievencesDate()}">Date</td>
+              <td th:text="${gr.getFarmer().getFirstName()}">Farmer Name</td>
+              <td th:text="${gr.getBank().getBankName()}">Bank Name</td>
+              <td th:text="${gr.getGrievencesType()}">Previous Type</td>
+              <td th:text="${gr.getGrievencesDescription()}">Description</td>
+              <td th:text="${gr.getGrievencesStatus()}">Status</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 

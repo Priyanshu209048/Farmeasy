@@ -26,8 +26,8 @@
     <div class="container" style="margin-top: 200px">
         <form action="" th:action="@{/farmer/processGrievences}" method="post" th:object="${grievences}">
             <h2>Report New Grievance</h2>
-            <label for="id">Application ID</label>
-            <input type="text" id="id" name="id" value="1244140" readonly>
+            <label for="applicationId">Application ID</label>
+            <input type="text" id="applicationId" name="applicationId" value="1244140" readonly>
 
             <label for="bank">Bank</label>
             <select id="bank" name="bank">
@@ -49,8 +49,8 @@
                 <option>Other</option>
             </select>
 
-            <label for="query">Write Query</label>
-            <textarea id="query" name="grievencesReview" rows="4" placeholder="Write your query here..."></textarea>
+            <label for="grievencesDescription">Write Query</label>
+            <textarea id="grievencesDescription" name="grievencesDescription" rows="4" placeholder="Write your query here..."></textarea>
 
             <button>Submit</button>
             <button class="cancel" onclick="clearForm()">Cancel</button>

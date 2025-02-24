@@ -1,10 +1,8 @@
 package com.project.farmeasy.controllers;
 
 import com.project.farmeasy.dao.BankDao;
-import com.project.farmeasy.entities.Apply;
-import com.project.farmeasy.entities.Bank;
-import com.project.farmeasy.entities.Farmer;
-import com.project.farmeasy.entities.Scheme;
+import com.project.farmeasy.dao.GrievencesDao;
+import com.project.farmeasy.entities.*;
 import com.project.farmeasy.services.BankService;
 import com.project.farmeasy.services.FarmerService;
 import jakarta.validation.Valid;
@@ -24,15 +22,11 @@ public class BankController {
 
     private final BankService bankService;
     private final BankDao bankDao;
+    private final GrievencesDao grievencesDao;
 
     @GetMapping("/home")
     public String home(Model model) {
         return "bank/index";
-    }
-
-    @GetMapping("/grievances")
-    public String grievance(Model model) {
-        return "bank/grievances";
     }
 
     @GetMapping("/addScheme")
@@ -42,8 +36,9 @@ public class BankController {
     }
 
     @GetMapping("/schemes")
-    public String schemes(Model model) {
-        List<Scheme> scheme = bankService.getSchemes();
+    public String schemes(Model model, Principal principal) {
+        String username = principal.getName();
+        List<Scheme> scheme = bankService.getSchemes(username);
         model.addAttribute("scheme", scheme);
         return "bank/schemes";
     }
@@ -76,22 +71,35 @@ public class BankController {
     }
 
     @GetMapping("/loanApplications")
-    public String loanApplication(Model model) {
-        List<Apply> applies = bankService.getApplies();
+    public String loanApplication(Model model, Principal principal) {
+        String username = principal.getName();
+        List<Apply> applies = bankService.getApplyByBank(username);
         model.addAttribute("applies", applies);
         return "bank/loanApplications";
     }
 
     @PostMapping("/do_loanApplications/{id}")
-    public String loanApplicationProcess(@PathVariable("id") Integer id, @RequestParam("review") String review, Model model, Principal principal) {
+    public String loanApplicationProcess(@PathVariable("id") Integer id, @RequestParam("review") String review,
+                                         @RequestParam("status") String status, Model model, Principal principal) {
         Apply apply = bankService.getApply(id);
         System.out.println(review);
 
-        bankService.updateApply(apply, review);
-        List<Apply> applies = bankService.getApplies();
+        bankService.updateApply(apply, status, review);
+
+        String username = principal.getName();
+        List<Apply> applies = bankService.getApplyByBank(username);
         model.addAttribute("applies", applies);
 
         return "redirect:/bank/loanApplications";
+    }
+
+    @GetMapping("/grievances")
+    public String grievance(Model model, Principal principal) {
+        String username = principal.getName();
+        Bank bank = bankDao.findByEmail(username);
+        List<Grievences> grievences = grievencesDao.findAllByBank(bank);
+        model.addAttribute("grievences", grievences);
+        return "bank/grievances";
     }
 
 }

@@ -1,5 +1,6 @@
 package com.project.farmeasy.services;
 
+import com.project.farmeasy.entities.Grievences;
 import com.project.farmeasy.entities.LoanForm;
 import com.project.farmeasy.entities.Farmer;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,4 +21,6 @@ public interface FarmerService {
     Boolean isUserSubmittedForm(String email);
     LoanForm getLoanFormByEmail(String email);
     LoanForm updateLoanForm(LoanForm loanForm);
+
+    void addGrievence(Grievences grievence, Farmer farmer);
 }

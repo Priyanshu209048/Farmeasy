@@ -113,9 +113,27 @@
               <th class="border p-2">Previous Type</th>
               <th class="border p-2">Description</th>
               <th class="border p-2">Status</th>
+              <th class="border p-2">Review</th>
             </tr>
           </thead>
-          <tbody id="grievance-table" class="text-center"></tbody>
+          <tbody class="text-center">
+            <tr th:each="gr : ${grievences}">
+              <td th:text="${gr.getGrievencesDate()}">Date</td>
+              <td th:text="${gr.getFarmer().getFirstName()}">Farmer Name</td>
+              <td th:text="${gr.getBank().getBankName()}">Bank Name</td>
+              <td th:text="${gr.getGrievencesType()}">Previous Type</td>
+              <td th:text="${gr.getGrievencesDescription()}">Description</td>
+              <td th:text="${gr.getGrievencesStatus()}">Status</td>
+              <form method="post" th:action="@{'/gov/grievences_process/'+${gr.getId()}}">
+                <select class="p-1 border rounded" id="grievencesStatus" name="grievencesStatus">
+                  <option value="Approved">Approved</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+                <input type="text" id="grievencesReview" name="grievencesReview" placeholder="review">
+                <button type="submit" class="bg-blue-500 text-white p-1 rounded">Submit</button>
+              </form>
+            </tr>
+          </tbody>
         </table>
       </div>
 

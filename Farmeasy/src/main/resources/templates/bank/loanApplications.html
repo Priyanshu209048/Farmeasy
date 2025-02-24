@@ -19,7 +19,7 @@
   <a th:href="@{/bank/loanReports}">📢 Loan Reports</a>
   <a th:href="@{/bank/schemes}">📃 Schemes</a>
   <a th:href="@{/bank/grievances}">⚠️ Grievances</a>
-  <a href="#" class="text-danger" onclick="logout()">🚪 Logout</a>
+  <a th:href="@{/logout}" class="text-danger" onclick="logout()">🚪 Logout</a>
 </div>
 <div class="ml-0 md:ml-60 p-6">
   <h1 class="text-4xl font-bold">Loan Applications</h1>
@@ -46,12 +46,13 @@
         <td class="border p-2" th:text="${apply.getDate()}">2024-07-15</td>
         <td class="border p-2">
           <form method="post" th:action="@{'/bank/do_loanApplications/'+${apply.getId()}}">
-            <select class="p-1 border rounded" id="review" name="review">
+            <select class="p-1 border rounded" id="status" name="status">
               <option value="Under Review">Under Review</option>
               <option value="Approved">Approved</option>
               <option value="Rejected">Rejected</option>
               <option value="Eligible for Subsidy">Eligible for Subsidy</option>
             </select>
+            <input type="text" id="review" name="review" placeholder="review">
             <button type="submit" class="bg-blue-500 text-white p-1 rounded">Submit</button>
           </form>
         </td>
