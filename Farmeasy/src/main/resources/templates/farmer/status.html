@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidya Lakshmi - Loan Application</title>
+    <title>FarmEasy - Loan Application</title>
     <link rel="stylesheet" th:href="@{/bankStatic/style/statusStyle.css}">
 </head>
 <body>
@@ -28,33 +28,31 @@
                     <tr>
                         <th>Sr. No.</th>
                         <th>Bank Name</th>
-                        <th>Branch Name & Preferred branch IFSC code</th>
                         <th>Loan Required Amount (In Rs)</th>
                         <th>Scheme Name</th>
                         <th>Application ID</th>
                         <th>Application Date</th>
                         <th>Status</th>
                         <th>Remarks from Bank</th>
-                        <th>Disbursed Amount (In Rs)</th>
                         <th>Disbursement Date</th>
                         <th>Report Grievance</th>
                         <th>Channel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr th:each="ap : ${apply}">
                         <td>1</td>
-                        <td>Canara Bank</td>
-                        <td>DELHI KINGSWAY-G T B NAGAR CNRB0019033</td>
-                        <td>Rs.691,000</td>
-                        <td>VIDYA TURANT</td>
-                        <td><a href="#">1244140</a></td>
-                        <td>14-Nov-2021</td>
-                        <td class="status">Disbursed</td>
-                        <td><input type="text" value="approve"></td>
-                        <td>Rs.69,500</td>
-                        <td>13-Dec-2021</td>
-                        <td><button class="grievance-btn">Report Grievance</button></td>
+                        <td th:text="${ap.getScheme().getBank().getBankName()}">Canara Bank</td>
+                        <td th:text="${ap.getAmount()}">Rs.691,000</td>
+                        <td th:text="${ap.getScheme().getSchemeName()}">VIDYA TURANT</td>
+                        <td th:text="${ap.getId()}"><a href="#">1244140</a></td>
+                        <td th:text="${ap.getDate()}">14-Nov-2021</td>
+                        <td th:text="${ap.getStatus()}" class="status">Disbursed</td>
+                        <td th:text="${ap.getReview()}">Approved</td>
+                        <td th:text="${ap.getStatusDate()}">13-Dec-2021</td>
+                        <form th:action="@{/farmer/grievences}" method="get">
+                            <td><button type="submit" class="grievance-btn">Report Grievance</button></td>
+                        </form>
                         <td>PORTAL</td>
                     </tr>
                 </tbody>

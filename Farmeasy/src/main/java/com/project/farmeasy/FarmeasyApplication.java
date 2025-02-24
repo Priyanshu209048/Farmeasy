@@ -82,9 +82,18 @@ public class FarmeasyApplication implements CommandLineRunner {
         }
     }
 
+    /*public void addGov() {
+        User govUser = new User();
+        govUser.setEmail("central@gov.com");
+        govUser.setPassword(passwordEncoder.encode("12345"));
+        govUser.setRole("ROLE_GOV");
+        userDao.save(govUser);
+    }*/
+
     @Override
     public void run(String... args) throws Exception {
        addRole();
        addStaticBanks();
+       //addGov();
     }
 }

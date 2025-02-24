@@ -26,6 +26,10 @@ public class Apply {
     @JoinColumn(name = "scheme_id", nullable = false)
     private Scheme scheme;
 
+    @ManyToOne
+    @JoinColumn(name = "bank_id", nullable = false)
+    private Bank bank;
+
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
@@ -37,4 +41,7 @@ public class Apply {
 
     @Column(name = "status", nullable = false)
     private String status;
+
+    @Column(name = "review")
+    private String review;
 }

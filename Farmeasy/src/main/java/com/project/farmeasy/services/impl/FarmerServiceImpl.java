@@ -1,9 +1,11 @@
 package com.project.farmeasy.services.impl;
 
+import com.project.farmeasy.dao.GrievencesDao;
 import com.project.farmeasy.dao.LoanFormDao;
 import com.project.farmeasy.dao.FarmerDao;
 import com.project.farmeasy.dao.UserDao;
 import com.project.farmeasy.entities.Farmer;
+import com.project.farmeasy.entities.Grievences;
 import com.project.farmeasy.entities.LoanForm;
 import com.project.farmeasy.entities.User;
 import com.project.farmeasy.exceptions.ResourceNotFoundException;
@@ -17,8 +19,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +32,7 @@ public class FarmerServiceImpl implements FarmerService {
     private final LoanFormDao loanFormDao;
     private final UserDao userDao;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final GrievencesDao grievencesDao;
 
     @Override
     public Farmer saveUser(Farmer farmer) {
@@ -112,5 +115,17 @@ public class FarmerServiceImpl implements FarmerService {
     public LoanForm updateLoanForm(LoanForm loanForm) {
         loanFormDao.save(loanForm);
         return loanForm;
+    }
+
+    @Override
+    public void addGrievence(Grievences grievence, Farmer farmer) {
+        grievence.setFarmer(farmer);
+        grievence.setGrievencesDate(LocalDate.now());
+        grievence.setGrievencesReview("-");
+        grievence.setGrievencesStatus("-");
+
+        System.out.println("1");
+
+        grievencesDao.save(grievence);
     }
 }
