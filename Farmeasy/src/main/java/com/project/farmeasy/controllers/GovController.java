@@ -46,11 +46,13 @@ public class GovController {
     }
 
     @PostMapping("/grievences_process/{id}")
-    public String grievances_process(@PathVariable("id") Integer id, @RequestParam("review") String review,
-                                     @RequestParam("status") String status, Model model, Principal principal) {
+    public String grievances_process(@PathVariable("id") Integer id, @RequestParam("grievencesReview") String review,
+                                     @RequestParam("grievencesStatus") String status, Model model, Principal principal) {
         Grievences grievences = govService.getGrievences(id);
-        model.addAttribute("grievences", grievences);
-        return "redirect:gov/grievances";
+        govService.updateGrievences(grievences, review, status);
+        List<Grievences> g = grievencesDao.findAll();
+        model.addAttribute("grievences", g);
+        return "gov/grievances";
     }
 
     @GetMapping("/overview")

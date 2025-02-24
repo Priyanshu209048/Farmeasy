@@ -17,4 +17,11 @@ public class GovServiceImpl implements GovService {
     public Grievences getGrievences(Integer id) {
         return grievencesDao.findById(id).orElseThrow(()-> new ResourceNotFoundException("Grievences", "id", String.valueOf(id)));
     }
+
+    @Override
+    public void updateGrievences(Grievences grievences, String status, String review) {
+        grievences.setGrievencesReview(review);
+        grievences.setGrievencesStatus(status);
+        grievencesDao.save(grievences);
+    }
 }

@@ -61,7 +61,7 @@
               >
             </li>
             <li class="nav-item">
-              <button class="btn btn-danger" onclick="logout()">Logout</button>
+              <a class="btn btn-danger" th:href="@{/logout}">Logout</a>
             </li>
           </ul>
         </div>
@@ -118,20 +118,22 @@
           </thead>
           <tbody class="text-center">
             <tr th:each="gr : ${grievences}">
-              <td th:text="${gr.getGrievencesDate()}">Date</td>
-              <td th:text="${gr.getFarmer().getFirstName()}">Farmer Name</td>
-              <td th:text="${gr.getBank().getBankName()}">Bank Name</td>
-              <td th:text="${gr.getGrievencesType()}">Previous Type</td>
-              <td th:text="${gr.getGrievencesDescription()}">Description</td>
-              <td th:text="${gr.getGrievencesStatus()}">Status</td>
-              <form method="post" th:action="@{'/gov/grievences_process/'+${gr.getId()}}">
-                <select class="p-1 border rounded" id="grievencesStatus" name="grievencesStatus">
-                  <option value="Approved">Approved</option>
-                  <option value="Rejected">Rejected</option>
-                </select>
-                <input type="text" id="grievencesReview" name="grievencesReview" placeholder="review">
-                <button type="submit" class="bg-blue-500 text-white p-1 rounded">Submit</button>
-              </form>
+              <td class="border p-2" th:text="${gr.getGrievencesDate()}">Date</td>
+              <td class="border p-2" th:text="${gr.getFarmer().getFirstName()}">Farmer Name</td>
+              <td class="border p-2" th:text="${gr.getBank().getBankName()}">Bank Name</td>
+              <td class="border p-2" th:text="${gr.getGrievencesType()}">Previous Type</td>
+              <td class="border p-2" th:text="${gr.getGrievencesDescription()}">Description</td>
+              <td class="border p-2" th:text="${gr.getGrievencesStatus()}">Status</td>
+              <td class="border p-2">
+                <form method="post" th:action="@{'/gov/grievences_process/'+${gr.getId()}}">
+                  <select class="p-1 border rounded" id="grievencesStatus" name="grievencesStatus">
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                  <input type="text" id="grievencesReview" name="grievencesReview" placeholder="review">
+                  <button type="submit" class="bg-blue-500 text-white p-1 rounded">Submit</button>
+                </form>
+              </td>
             </tr>
           </tbody>
         </table>
