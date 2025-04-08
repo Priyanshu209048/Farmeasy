@@ -17,4 +17,5 @@ public interface ApplyDao extends JpaRepository<Apply, Integer> {
     List<Apply> findAllByScheme(Scheme scheme);
     List<Apply> findAllByFarmer(Farmer farmer);
     List<Apply> findAllByBank(Bank bank);
+    long countByFarmer(Farmer farmer);
 }

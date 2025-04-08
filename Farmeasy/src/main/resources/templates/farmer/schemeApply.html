@@ -49,6 +49,10 @@
             <button class="search-btn">Search</button>
         </div>
 
+        <div th:if="${errorMessage}" class="alert alert-danger">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
         <table class="loan-table">
             <thead>
                 <tr>
@@ -71,7 +75,10 @@
                     <form method="post" th:action="@{'/farmer/apply/'+${sc.getId()}}">
                         <td><input type="text" id="amount" name="amount" placeholder="50000"></td>
                         <td>
-                            <button type="submit" class="apply-btn" th:onclick="|applyLoan('Agri Gold Loan', 'State Bank of India')|">Apply</button>
+                            <button type="submit" class="apply-btn"
+                                    th:data-scheme="${sc.schemeName}"
+                                    th:data-bank="${sc.bank.bankName}"
+                                    onclick="applyLoan(this)">Apply</button>
                         </td>
                     </form>
                 </tr>
@@ -80,7 +87,9 @@
     </div>
 
     <script>
-        function applyLoan(scheme, bank) {
+        function applyLoan(button) {
+            let scheme = button.getAttribute("data-scheme");
+            let bank = button.getAttribute("data-bank");
             alert(`You have applied for the ${scheme} from ${bank}.`);
         }
     </script>

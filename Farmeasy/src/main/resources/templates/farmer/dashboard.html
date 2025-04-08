@@ -18,6 +18,8 @@
     />
     <title>FarmEasy</title>
     <link rel="stylesheet" th:href="@{/farmer/style/style.css}">
+    <link rel="stylesheet" th:href="@{/farmer/style/chatbot.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script
       type="text/javascript"
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
@@ -123,89 +125,31 @@
         </div>
       </div>
 
-      <!-- Start of the loan form section at the bottom -->
-
-      <div
-        id="loan-form-section"
-        style="
-          margin-top: 50px;
-          width: 100%;
-          background-image: url('/farmer/images/loanmainpage.jpg');
-          background-size: cover;
-
-          background-position: center;
-          padding: 40px;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        "
-      >
-        <form class="loan-section" action="/submit-loan" method="POST">
-          <h2 style="color: white">Loan Application</h2>
-          <div></div>
-          <div class="form-group">
-            <label for="name" style="color: white">Full Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-control"
-              required
-            />
+      <div id="chatbot">
+        <div id="chat-header">
+          <div class="menu">
+            <span class="dots" onclick="toggleChatHistory()">⋮</span>
+            <div class="chat-history" id="chat-history">
+              <h4>📜 Chat History</h4>
+              <div id="history-content"></div>
+            </div>
           </div>
+          <div class="title">Ask Me Anything</div>
+        </div>
 
-          <div class="form-group">
-            <label for="email" style="color: white">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control"
-              required
-            />
-          </div>
+        <div id="chat-body">
+          <div id="messages"></div>
+        </div>
 
-          <div class="form-group">
-            <label for="loan-amount" style="color: white"
-              >Loan Amount (in INR):</label
-            >
-            <input
-              type="number"
-              id="loan-amount"
-              name="loan-amount"
-              class="form-control"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="loan-duration" style="color: white"
-              >Loan Duration (in years):</label
-            >
-            <input
-              type="number"
-              id="loan-duration"
-              name="loan-duration"
-              class="form-control"
-              required
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="purpose" style="color: white">Loan Purpose:</label>
-            <textarea
-              id="purpose"
-              name="purpose"
-              class="form-control"
-              required
-            ></textarea>
-          </div>
-
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+        <div id="chat-footer">
+          <label for="file-input">
+            <span class="material-icons">📄</span>
+          </label>
+          <input type="file" id="file-input" accept=".pdf,.txt,.doc,.docx" style="display:none;" />
+          <input type="text" id="user-input" placeholder="Type your question here..." />
+          <button id="send-btn">Send</button>
+        </div>
       </div>
-      <!-- End of the loan form section -->
 
       <!-- Footer Section -->
       <footer>
@@ -229,5 +173,6 @@
       referrerpolicy="no-referrer"
     ></script>
     <script th:src="@{/farmer/js/script.js}"></script>
+    <script th:src="@{/farmer/js/chatbot.js}"></script>
   </body>
 </html>
