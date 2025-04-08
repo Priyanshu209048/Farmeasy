@@ -121,7 +121,26 @@ public class UserController {
     public String applyProcess(@PathVariable("id") Integer id, @RequestParam("amount") String amount, Model model, Principal principal) {
         String username = principal.getName();
         Farmer farmer = farmerService.getUserByEmail(username);
+        List<Scheme> schemeList = bankService.getSchemes();
+
+        long appliedSchemesCount = applyDao.countByFarmer(farmer);
+
+        if (appliedSchemesCount >= 3) {
+            model.addAttribute("errorMessage", "You cannot apply for more than 3 loan schemes.");
+            model.addAttribute("farmer", farmer);
+            model.addAttribute("scheme", schemeList);
+            model.addAttribute("apply", new Apply());
+            return "farmer/schemeApply";
+        }
+
         Scheme scheme = schemeDao.findById(id).orElse(null);
+        if (scheme == null) {
+            model.addAttribute("errorMessage", "Selected scheme not found.");
+            model.addAttribute("farmer", farmer);
+            model.addAttribute("scheme", schemeList);
+            model.addAttribute("apply", new Apply());
+            return "farmer/schemeApply";
+        }
 
         System.out.println(amount);
         Apply apply = new Apply();
@@ -129,7 +148,6 @@ public class UserController {
         apply.setScheme(scheme);
         apply.setDate(LocalDate.now());
         apply.setAmount(amount);
-        assert scheme != null;
         apply.setBank(scheme.getBank());
         apply.setStatusDate("-");
         apply.setReview("-");
