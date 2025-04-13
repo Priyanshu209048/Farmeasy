@@ -30,6 +30,7 @@ public class UserController {
     private final LoanFormDao loanFormDao;
     private final BankService bankService;
     private final ApplyDao applyDao;
+    /*private final SchemeDao schemeDao;*/
     private final SchemeDao schemeDao;
 
     @GetMapping("/home")
